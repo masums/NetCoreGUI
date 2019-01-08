@@ -1,0 +1,3 @@
+[submodule "NetCoreGLFW"]
+	path = NetCoreGLFW
+	url = https://github.com/masums/NetCoreGLFW.git
