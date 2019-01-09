@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.Theme
+namespace NetCoreGui.Base
 {
-    class DarkTheme
+    public class Font
     {
+
     }
 }

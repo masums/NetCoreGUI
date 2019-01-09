@@ -4,8 +4,18 @@ using System.Text;
 
 namespace NetCoreGui.Base
 {
+    public enum ControlVisibility
+    {
+        Visible,
+        Disable,
+        Hidden
+    }
+
     public abstract class Control
     {
+        public int ZedIndex { get; set; }
+
+        public ControlVisibility Visibility { get; set; }
         public Control Parent { get; set; }
         public List<Control> Chields { get; set; }
         public Theme Theme { get; set; }

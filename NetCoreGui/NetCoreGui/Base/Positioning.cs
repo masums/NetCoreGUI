@@ -6,25 +6,26 @@ namespace NetCoreGui.Base
 {
     public class Size
     {
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     public class Rect
     {
+        public Rect(float top, float left, float right, float bottom) { Top = top; Right = right; Bottom = bottom; Left = left; }
+
         public float Top { get; set; }
         public float Left { get; set; }
         public float Right { get; set; }
         public float Bottom { get; set; }
-
     }
 
     public enum Position
     {
         Top ,
+        Left, 
         Right ,
-        Bottom ,
-        Left 
+        Bottom
     }
     
     public class Anchor
