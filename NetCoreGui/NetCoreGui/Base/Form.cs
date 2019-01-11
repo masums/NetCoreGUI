@@ -4,7 +4,8 @@ using System.Text;
 
 namespace NetCoreGui.Base
 {
-    public class Form
+    public interface Form
     {
+
     }
 }

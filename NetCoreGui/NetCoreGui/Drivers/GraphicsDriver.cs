@@ -28,10 +28,8 @@ namespace NetCoreGui.Drivers
         }
         public void CloseWindow(Window window)
         {
-
-            //Glfw.DestroyWindow(window);
+            Glfw.DestroyWindow(new Glfw.Window() {Ptr = window.WindowHandle});
             //Glfw.Terminate();
-
         }
 
         public IntPtr CreateWindow(string title, Size size)
@@ -40,10 +38,10 @@ namespace NetCoreGui.Drivers
             Glfw.MakeContextCurrent(window);
 
             GRGlInterface glInterface = GRGlInterface.AssembleGlInterface(window, (contextHandle, name) =>
-            {
-                var proc = Glfw.GetProcAddress(name);
-                return proc;
-            }
+                {
+                    var proc = Glfw.GetProcAddress(name);
+                    return proc;
+                }
             );
 
             GRContext context = GRContext.Create(GRBackend.OpenGL, glInterface);

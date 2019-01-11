@@ -25,6 +25,8 @@ namespace NetCoreGui.Base
     {
         internal GlfwGraphicsDriver _graphicsDriver;
 
+        public string Title { get; set; }
+        public string Icon { get; set; }
         public int CurrentZedIndex { get; set; }
         public IntPtr WindowHandle { get; set; }
         public IntPtr GraphicsContext { get; set; }
@@ -32,10 +34,10 @@ namespace NetCoreGui.Base
         public WindowState State { get; set; }
         public Monitor Monitor { get; set; }
         
-        public Window(Monitor monitor, Window parent = null, Rect position = null)
+        public Window(string title, Monitor monitor, Window parent = null, Rect position = null)
         {
             _graphicsDriver = new GlfwGraphicsDriver();
-
+            Title = title;
             Monitor = monitor;
             Parent = parent;
             Position = position;
@@ -50,8 +52,8 @@ namespace NetCoreGui.Base
 
         private void SetDefaultSizeAndPosition()
         {
-            var y = Monitor.ResolutionY / 4;
-            var x = Monitor.ResolutionX / 4;
+            var y = (int) Monitor.ResolutionY / 4;
+            var x = (int) Monitor.ResolutionX / 4;
             Position = new Rect(x, y, x + 400, y + 400);
         }
 
@@ -63,7 +65,12 @@ namespace NetCoreGui.Base
         internal void Start(int lastZedIndex)
         {
             ZedIndex = CurrentZedIndex = lastZedIndex;
+            WindowHandle = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
+        }
 
+        public Glfw3.Glfw.Window GetGlfwWindow()
+        {
+            return new Glfw3.Glfw.Window() { Ptr = WindowHandle};
         }
     }
 }
