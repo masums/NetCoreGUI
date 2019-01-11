@@ -1,10 +1,12 @@
-﻿using System;
+﻿using NetCoreGui.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NetCoreGui.Controls
 {
-    class Button
+    public class Button : Control
     {
+        
     }
 }

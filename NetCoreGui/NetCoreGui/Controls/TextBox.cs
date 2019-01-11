@@ -4,7 +4,8 @@ using System.Text;
 
 namespace NetCoreGui.Controls
 {
-    class TextBox
+    public class TextBox
     {
+
     }
 }

@@ -25,18 +25,29 @@ namespace NetCoreGui.Base
         public int Bottom { get; set; }
     }
 
-    public enum Position
+    public enum Alignment
     {
         Top ,
         Left, 
         Right ,
-        Bottom
+        Bottom,
+        Center,
+        CenterVertical,
+        CenterHorizontal,
+        Fill,
+        Absolute
     }
-    
+
+    public enum Orientation
+    {
+        Horizontal, 
+        Vertical        
+    };
+
     public class Anchor
     {
         public Control Neighbour { get; set; }
-        public Position OwnPostion { get; set; }
-        public Position NeighbourPostion { get; set; }
+        public Alignment OwnPostion { get; set; }
+        public Alignment NeighbourPostion { get; set; }
     }
 }

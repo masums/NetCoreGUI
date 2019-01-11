@@ -35,6 +35,7 @@ namespace NetCoreGui
         }
 
         public static void Run(Window window){
+
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Start(_lastZedIndex);
             var nativeWindow = window.GraphicsContext.GlfwWindow;

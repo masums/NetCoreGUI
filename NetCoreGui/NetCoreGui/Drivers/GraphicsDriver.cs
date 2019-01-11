@@ -12,7 +12,7 @@ namespace NetCoreGui.Drivers
         Monitor GetPrimaryMonitor();
         GraphicsContext CreateWindow(string title, Size size);
         void CloseWindow(Window window);
-        void DrawControls(Window window);
+        void DrawControls(Window window);        
     }
 
     public class GlfwGraphicsDriver : IGraphicsDriver
@@ -45,6 +45,7 @@ namespace NetCoreGui.Drivers
             );
 
             GRContext context = GRContext.Create(GRBackend.OpenGL, glInterface);
+            
             var brtd = new GRBackendRenderTargetDesc()
             {
                 Config = GRPixelConfig.Rgba8888,
@@ -94,5 +95,6 @@ namespace NetCoreGui.Drivers
             };
             return monitor;
         }
+        
     }
 }
