@@ -1,4 +1,5 @@
 ﻿using NetCoreGui.Drivers;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,8 +29,7 @@ namespace NetCoreGui.Base
         public string Title { get; set; }
         public string Icon { get; set; }
         public int CurrentZedIndex { get; set; }
-        public IntPtr WindowHandle { get; set; }
-        public IntPtr GraphicsContext { get; set; }
+        public GraphicsContext GraphicsContext { get; set; }
 
         public WindowState State { get; set; }
         public Monitor Monitor { get; set; }
@@ -65,12 +65,14 @@ namespace NetCoreGui.Base
         internal void Start(int lastZedIndex)
         {
             ZedIndex = CurrentZedIndex = lastZedIndex;
-            WindowHandle = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
-        }
+            GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
+            Glfw3.Glfw.SetWindowRefreshCallback(GraphicsContext.GlfwWindow, (w) => {
 
-        public Glfw3.Glfw.Window GetGlfwWindow()
-        {
-            return new Glfw3.Glfw.Window() { Ptr = WindowHandle};
+                int width, heihgt;
+                Glfw3.Glfw.GetWindowSize(w, out width, out heihgt);                
+                GraphicsContext.Canvas2d.Clear(SKColors.WhiteSmoke);
+                GraphicsContext.Canvas2d.Flush();
+            });
         }
     }
 }

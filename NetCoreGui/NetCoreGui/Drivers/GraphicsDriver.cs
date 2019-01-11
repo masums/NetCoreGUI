@@ -10,7 +10,7 @@ namespace NetCoreGui.Drivers
     public interface IGraphicsDriver
     {
         Monitor GetPrimaryMonitor();
-        IntPtr CreateWindow(string title, Size size);
+        GraphicsContext CreateWindow(string title, Size size);
         void CloseWindow(Window window);
         void DrawControls(Window window);
     }
@@ -23,18 +23,18 @@ namespace NetCoreGui.Drivers
             Glfw.SetErrorCallback((error, description) => Console.WriteLine("Error " + error + ": " + description));
             Glfw.WindowHint(Glfw.Hint.Visible, 1);
             Glfw.WindowHint(Glfw.Hint.Samples, 1);
-            Glfw.WindowHint(Glfw.Hint.Resizable, 1);
-            
+            Glfw.WindowHint(Glfw.Hint.Resizable, 1);            
         }
         public void CloseWindow(Window window)
         {
-            Glfw.DestroyWindow(new Glfw.Window() {Ptr = window.WindowHandle});
+            Glfw.DestroyWindow(window.GraphicsContext.GlfwWindow);
             //Glfw.Terminate();
         }
 
-        public IntPtr CreateWindow(string title, Size size)
+        public GraphicsContext CreateWindow(string title, Size size)
         {
             var window = Glfw.CreateWindow(size.Width, size.Height,title);
+            
             Glfw.MakeContextCurrent(window);
 
             GRGlInterface glInterface = GRGlInterface.AssembleGlInterface(window, (contextHandle, name) =>
@@ -58,14 +58,12 @@ namespace NetCoreGui.Drivers
 
             var backendRenderTargetDescription = new GRBackendRenderTarget(GRBackend.OpenGL, brtd);
 
-            using (var surface = SKSurface.Create(context, backendRenderTargetDescription, SKColorType.Rgba8888))
-            {
-                var canvas = surface.Canvas;
-                canvas.Clear(SKColors.WhiteSmoke);
-                canvas.Flush();                
-            }
-
-            return window.Ptr;
+            var surface = SKSurface.Create(context, backendRenderTargetDescription, SKColorType.Rgba8888);            
+            SKCanvas _canvs2d = surface.Canvas;
+            _canvs2d.Clear(SKColors.WhiteSmoke);
+            _canvs2d.Flush();
+            
+            return new GraphicsContext(window,_canvs2d);
         }
 
         public void DrawControls(Window window)

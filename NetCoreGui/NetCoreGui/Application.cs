@@ -37,13 +37,12 @@ namespace NetCoreGui
         public static void Run(Window window){
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Start(_lastZedIndex);
+            var nativeWindow = window.GraphicsContext.GlfwWindow;
 
-            var nativeWindow = window.GetGlfwWindow();
             while (!Glfw3.Glfw.WindowShouldClose(nativeWindow))
             {
                 Glfw3.Glfw.PollEvents();
-
-
+                
                 Glfw3.Glfw.SwapBuffers(nativeWindow);
             }
         }
