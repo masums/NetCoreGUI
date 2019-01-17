@@ -25,7 +25,7 @@ namespace NetCoreGui
         public static void Init(IntPtr consoleHandle)
         {
             graphicsDriver = new GlfwGraphicsDriver();
-            InitilizeMonitors();
+            InitilizeMonitors();            
         }
 
         private static void InitilizeMonitors()
