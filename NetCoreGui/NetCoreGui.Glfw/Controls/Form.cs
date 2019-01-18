@@ -1,9 +1,11 @@
-﻿using SkiaSharp;
+﻿using NetCoreGui.Base;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace NetCoreGui.Base
+namespace NetCoreGui.Glfw.Controls
 { 
     public class Form : Control, IForm
     {
@@ -17,6 +19,7 @@ namespace NetCoreGui.Base
                 var paint = new SKPaint() { Color = SKColors.Gray, Style = SKPaintStyle.Fill };
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
 
+                var sortedChildrens = Chields.OrderBy(x => x.ZedIndex).ToList();
                 foreach (var item in Chields)
                 {
                     item.Draw();
