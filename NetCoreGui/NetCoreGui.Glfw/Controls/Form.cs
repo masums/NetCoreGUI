@@ -16,7 +16,7 @@ namespace NetCoreGui.Glfw.Controls
             var window = GetWindow();
             if (window != null)
             {
-                var paint = new SKPaint() { Color = SKColors.Gray, Style = SKPaintStyle.Fill };
+                var paint = new SKPaint() { Color = SKColors.WhiteSmoke, Style = SKPaintStyle.Fill };
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
 
                 var sortedChildrens = Chields.OrderBy(x => x.ZedIndex).ToList();

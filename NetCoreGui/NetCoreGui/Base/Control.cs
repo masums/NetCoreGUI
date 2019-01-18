@@ -17,7 +17,7 @@ namespace NetCoreGui.Base
     public abstract class Control
     {
         public int ZedIndex { get; set; }
-
+        public bool IsFocused { get; set; }
         public string Text { get; set; }
         public ControlVisibility Visibility { get; set; }
         public Size Size { get; set; }

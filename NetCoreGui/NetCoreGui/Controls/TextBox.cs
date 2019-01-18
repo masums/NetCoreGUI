@@ -14,7 +14,7 @@ namespace NetCoreGui.Controls
             if (window != null)
             {
                 var backPaint = new SKPaint() { Color = SKColors.White, Style = SKPaintStyle.Fill};
-                var strokPaint = new SKPaint() { Color = SKColors.Blue, Style = SKPaintStyle.StrokeAndFill, StrokeWidth = 2, StrokeCap = SKStrokeCap.Square, IsStroke = true};
+                var strokPaint = new SKPaint() { Color = SKColors.LightBlue, Style = SKPaintStyle.StrokeAndFill, StrokeWidth = 2, StrokeCap = SKStrokeCap.Square, IsStroke = true};
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, backPaint);
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, strokPaint);
                 window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() { Color = SKColors.Black, Style = SKPaintStyle.Fill });
