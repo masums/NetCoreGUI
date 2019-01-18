@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NetCoreGui.Controls
 {
-    public class CheckBox : Control
+    public class DateTimePicker : Control
     {
 
     }

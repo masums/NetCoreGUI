@@ -5,7 +5,11 @@ using System.Text;
 
 namespace NetCoreGui.Controls
 {
-    public class CheckBox : Control
+    public class Tab : Control
+    {
+    }
+
+    public class TabPage : Control
     {
 
     }

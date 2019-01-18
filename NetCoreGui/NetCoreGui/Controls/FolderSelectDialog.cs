@@ -1,12 +1,10 @@
-﻿using NetCoreGui.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NetCoreGui.Controls
 {
-    public class CheckBox : Control
+    class FolderSelectDialog
     {
-
     }
 }
