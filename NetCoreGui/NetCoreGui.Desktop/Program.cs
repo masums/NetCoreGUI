@@ -1,5 +1,6 @@
 ﻿using NetCoreGui.Base;
 using NetCoreGui.Controls;
+using NetCoreGui.Controls.Dialogs;
 using NetCoreGui.Drivers;
 using System;
 using System.Diagnostics;

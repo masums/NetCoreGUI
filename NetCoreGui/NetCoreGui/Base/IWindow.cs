@@ -23,6 +23,7 @@ namespace NetCoreGui.Base
 
     public interface IWindow
     {
+        bool IsModal { get; set; }
         IGraphicsContext GraphicsContext { get; set; } 
         void Start(int lastZedIndex);
     }

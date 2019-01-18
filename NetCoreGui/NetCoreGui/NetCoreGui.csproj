@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="IoC\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>
