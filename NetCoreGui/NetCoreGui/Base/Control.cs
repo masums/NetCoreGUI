@@ -2,6 +2,7 @@
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace NetCoreGui.Base
@@ -31,21 +32,21 @@ namespace NetCoreGui.Base
         public Alignment Alignment { get; set; }
         public Orientation Orientation { get; set; }
         
-        public virtual Window GetWindow()
+        public virtual IWindow GetWindow()
         {
-            Window window = null;
+            IWindow window = null;
             var parent = Parent;
             while (parent != null)
             {
-                if (parent is Window)
+                if (parent is IWindow)
                 {
-                    window = (Window)parent;
+                    window = (IWindow)parent;
                     return window;
                 }
                 parent = parent.Parent;
             }
             
-            return (Window) this;
+            return (IWindow) this;
         }
 
         public Control()
@@ -76,8 +77,8 @@ namespace NetCoreGui.Base
             if(window != null)
             {
                 var paint = new SKPaint() { Color = SKColors.LightGray, Style = SKPaintStyle.Fill };
-                window.GraphicsContext.Canvas2d.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
-                window.GraphicsContext.Canvas2d.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() {Color=SKColors.Black, Style= SKPaintStyle.Fill });
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
+                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() {Color=SKColors.Black, Style= SKPaintStyle.Fill });
             }
         }
     }

@@ -4,13 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NetCoreGui.Base
-{
-    public interface IForm
-    {
-
-    }
-
-    public class Form : Control
+{ 
+    public class Form : Control, IForm
     {
         public bool IsActive { get; set; }
 
@@ -20,7 +15,7 @@ namespace NetCoreGui.Base
             if (window != null)
             {
                 var paint = new SKPaint() { Color = SKColors.Gray, Style = SKPaintStyle.Fill };
-                window.GraphicsContext.Canvas2d.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
 
                 foreach (var item in Chields)
                 {

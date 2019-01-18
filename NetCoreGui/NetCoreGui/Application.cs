@@ -9,7 +9,7 @@ namespace NetCoreGui
 {
     public class Application
     {
-        internal static GlfwGraphicsDriver graphicsDriver;
+        internal static IGraphicsDriver graphicsDriver;
 
         internal static IntPtr _consoleHandle;
         internal static int _lastZedIndex = 1;
@@ -20,11 +20,11 @@ namespace NetCoreGui
         public static Monitor PrimaryMonitor { get { return Monitors.Where(x => x.IsPrimary).FirstOrDefault(); } }
 
         internal static bool _isRunning = true;
-        public static List<Window> Windows { get; set; }
+        public static List<IWindow> Windows { get; set; }
         
         public static void Init(IntPtr consoleHandle)
         {
-            graphicsDriver = new GlfwGraphicsDriver();
+            graphicsDriver = new GraphicsDriver();
             InitilizeMonitors();            
         }
 
@@ -34,11 +34,12 @@ namespace NetCoreGui
             Monitors = new List<Monitor>() { monitor };
         }
 
-        public static void Run(Window window){
+        public static void Run(IWindow window){
 
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Start(_lastZedIndex);
-            var nativeWindow = window.GraphicsContext.GlfwWindow;
+
+            var nativeWindow = new Glfw3.Glfw.Window() { Ptr = window.GraphicsContext.NativeWindowHandle };
 
             while (!Glfw3.Glfw.WindowShouldClose(nativeWindow))
             {

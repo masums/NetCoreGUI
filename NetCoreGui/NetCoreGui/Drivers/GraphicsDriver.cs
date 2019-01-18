@@ -3,21 +3,14 @@ using NetCoreGui.Base;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace NetCoreGui.Drivers
-{
-    public interface IGraphicsDriver
+{ 
+    public class GraphicsDriver : IGraphicsDriver
     {
-        Monitor GetPrimaryMonitor();
-        GraphicsContext CreateWindow(string title, Size size);
-        void CloseWindow(Window window);
-        void DrawControls(Window window);        
-    }
-
-    public class GlfwGraphicsDriver : IGraphicsDriver
-    {
-        public GlfwGraphicsDriver()
+        public GraphicsDriver()
         {
             Glfw.Init();
             Glfw.SetErrorCallback((error, description) => Console.WriteLine("Error " + error + ": " + description));
@@ -25,13 +18,13 @@ namespace NetCoreGui.Drivers
             Glfw.WindowHint(Glfw.Hint.Samples, 1);
             Glfw.WindowHint(Glfw.Hint.Resizable, 1);            
         }
-        public void CloseWindow(Window window)
-        {
-            Glfw.DestroyWindow(window.GraphicsContext.GlfwWindow);
-            //Glfw.Terminate();
-        }
 
-        public GraphicsContext CreateWindow(string title, Size size)
+        public void CloseWindow(IWindow window)
+        {
+            var glfGContext = (GraphicsContext) window.GraphicsContext;
+            Glfw.DestroyWindow(glfGContext.GlfwWindow);
+        }
+        public IGraphicsContext CreateWindow(string title, Size size)
         {
             var window = Glfw.CreateWindow(size.Width, size.Height,title);
             
@@ -64,10 +57,10 @@ namespace NetCoreGui.Drivers
             _canvs2d.Clear(SKColors.WhiteSmoke);
             _canvs2d.Flush();
             
-            return new GraphicsContext(window,_canvs2d);
+            return new GraphicsContext(window.Ptr,_canvs2d);
         }
 
-        public void DrawControls(Window window)
+        public void DrawControls(IWindow window)
         {
             throw new NotImplementedException();
         }

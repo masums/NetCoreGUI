@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreGui.Desktop", "NetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreGlfw", "..\NetCoreGLFW\NetCoreGlfw\NetCoreGlfw.csproj", "{68E9C06C-B718-469A-AD37-6D7A3D0406AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreGui.Glfw", "NetCoreGui.Glfw\NetCoreGui.Glfw.csproj", "{96E86393-6A73-488F-AAE9-7D5DC22048BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{68E9C06C-B718-469A-AD37-6D7A3D0406AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68E9C06C-B718-469A-AD37-6D7A3D0406AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68E9C06C-B718-469A-AD37-6D7A3D0406AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E86393-6A73-488F-AAE9-7D5DC22048BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E86393-6A73-488F-AAE9-7D5DC22048BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E86393-6A73-488F-AAE9-7D5DC22048BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E86393-6A73-488F-AAE9-7D5DC22048BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,48 +2,35 @@
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace NetCoreGui.Base
 {
-    public enum WindowState
-    {
-        Active,
-        Inactive,
-        Minimized,
-        Restored,
-        Maximized
-    }
-
-    public enum WindowStartupPosition
-    {
-        CenterScreen,
-        CenterParent,
-        LastPosition
-    }
     
-    public class Window : Control
+    
+    public class Window : Control, IWindow
     {
-        internal GlfwGraphicsDriver _graphicsDriver;
+        internal IGraphicsDriver _graphicsDriver;
         internal int _currentZedIndex;
 
         public string Title { get; set; }
         public string Icon { get; set; }
         public bool IsModal { get; set; }
         
-        public GraphicsContext GraphicsContext { get; set; }
+        public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
         public Monitor Monitor { get; set; }
         
-        public List<Form> Forms { get; set; }
+        public IForm Form { get; set; }
 
-        public Window(string title, Monitor monitor, Window parent = null, Rect position = null)
+        public Window(string title, Window parent = null, Rect position = null)
         {
-            _graphicsDriver = new GlfwGraphicsDriver();
-            Forms = new List<Form>();
+            _graphicsDriver = new GraphicsDriver();
+            Form = new Form();
 
             Title = title;
-            Monitor = monitor;
+            Monitor = _graphicsDriver.GetPrimaryMonitor();
             Parent = parent;
             Position = position;
             
@@ -55,10 +42,10 @@ namespace NetCoreGui.Base
             State = WindowState.Active;
         }
 
-        public void Add(Form chield)
+        public void SetForm(Form chield)
         {
             chield.Parent = this;
-            Forms.Add(chield);
+            Form = chield;
         }
 
         private void SetDefaultSizeAndPosition()
@@ -73,23 +60,20 @@ namespace NetCoreGui.Base
             
         }
 
-        internal void Start(int lastZedIndex)
+        public void Start(int lastZedIndex)
         {
             ZedIndex = _currentZedIndex = lastZedIndex;
             GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
 
-            Glfw3.Glfw.SetWindowRefreshCallback(GraphicsContext.GlfwWindow, (w) => {
+            var window = new Glfw3.Glfw.Window() { Ptr = GraphicsContext.NativeWindowHandle };
+
+            Glfw3.Glfw.SetWindowRefreshCallback(  window, (w) => {
 
                 int width, heihgt;
                 Glfw3.Glfw.GetWindowSize(w, out width, out heihgt);                
-                GraphicsContext.Canvas2d.Clear(SKColors.WhiteSmoke);
-
-                foreach (var item in Forms)
-                {
-                    item.Draw();
-                }
-
-                GraphicsContext.Canvas2d.Flush();
+                GraphicsContext.ClearCanvas(Color.WhiteSmoke);                
+                Form.Draw();
+                GraphicsContext.FlushContext();
             });
         }
         
