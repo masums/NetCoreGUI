@@ -5,7 +5,8 @@ using System.Text;
 
 namespace NetCoreGui.Controls.Container
 {
-    public class Panel : Control
+    public class FlowLayoutPanel : Control
     {
+
     }
 }

@@ -1,7 +1,6 @@
 ﻿using NetCoreGui.Base;
 using NetCoreGui.Controls;
 using NetCoreGui.Drivers;
-using NetCoreGui.Glfw.Controls;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -24,7 +23,8 @@ namespace NetCoreGui.Desktop
             };
 
             form.Add(new Button() { Text = "Click Me", Size = new Size(100,30), Position = new Base.Rect(30,30, 130, 60)});
-            form.Add(new TextBox() { Text = "Edit Text", Size = new Size(200,30), Position = new Rect(100,30, 230,230) });
+            form.Add(new Label() { Text = "Enter your name", Size = new Size(80, 20), Position = new Base.Rect(70, 20, 110, 80) });
+            form.Add(new TextBox() { Text = "Edit Text", Size = new Size(200,30), Position = new Rect(100,30, 230,110) });
 
             window.SetForm(form);
             Application.Run(window);

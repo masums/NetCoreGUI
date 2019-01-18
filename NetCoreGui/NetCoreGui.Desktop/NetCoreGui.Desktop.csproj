@@ -15,7 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetCoreGui.Glfw\NetCoreGui.Glfw.csproj" />
     <ProjectReference Include="..\NetCoreGui\NetCoreGui.csproj" />
   </ItemGroup>
 

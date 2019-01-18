@@ -18,8 +18,7 @@ namespace NetCoreGui.Controls
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, backPaint);
                 window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, strokPaint);
                 window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() { Color = SKColors.Black, Style = SKPaintStyle.Fill });
-            }
-            //base.Draw();    
+            }            
         }
     }
 }

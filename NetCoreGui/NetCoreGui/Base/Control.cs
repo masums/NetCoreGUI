@@ -16,6 +16,7 @@ namespace NetCoreGui.Base
 
     public abstract class Control
     {
+        #region Properties
         public int ZedIndex { get; set; }
         public bool IsFocused { get; set; }
         public string Text { get; set; }
@@ -31,7 +32,15 @@ namespace NetCoreGui.Base
         public Rect Margin { get; set; }
         public Alignment Alignment { get; set; }
         public Orientation Orientation { get; set; }
+        #endregion
+
+        #region Public Methods
         
+        public Control()
+        {
+            Chields = new List<Control>();
+        }
+
         public virtual IWindow GetWindow()
         {
             IWindow window = null;
@@ -47,11 +56,6 @@ namespace NetCoreGui.Base
             }
             
             return (IWindow) this;
-        }
-
-        public Control()
-        {
-            Chields = new List<Control>();
         }
 
         public virtual void Add(Control chield)
@@ -81,5 +85,18 @@ namespace NetCoreGui.Base
                 window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() {Color=SKColors.Black, Style= SKPaintStyle.Fill });
             }
         }
+        #endregion
+
+        #region Private Methods
+
+        #endregion
+
+        #region Events
+        public event EventHandler OnMouseMove;
+        public event EventHandler OnMouseClick;
+        public event EventHandler OnMouseDoubleClick;
+        public event EventHandler OnResize;
+        public event EventHandler OnRefresh;
+        #endregion
     }
 }
