@@ -1,7 +1,10 @@
-﻿using NetCoreGui.Base;
+﻿using Glfw3;
+using NetCoreGui.Base;
 using NetCoreGui.Drivers;
+using NetCoreGui.Events;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -39,14 +42,13 @@ namespace NetCoreGui
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Start(_lastZedIndex);
 
-            var nativeWindow = new Glfw3.Glfw.Window() { Ptr = window.GraphicsContext.NativeWindowHandle };
-
-            while (!Glfw3.Glfw.WindowShouldClose(nativeWindow))
+            var nativeWindow = new Glfw.Window() { Ptr = window.GraphicsContext.NativeWindowHandle };
+            
+            while (!Glfw.WindowShouldClose(nativeWindow))
             {
-                Glfw3.Glfw.PollEvents();
-                
-                Glfw3.Glfw.SwapBuffers(nativeWindow);
+                Glfw.PollEvents();                
+                Glfw.SwapBuffers(nativeWindow);                
             }
-        }
+        } 
     }
 }

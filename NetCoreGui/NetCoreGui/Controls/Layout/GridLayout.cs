@@ -4,7 +4,8 @@ using System.Text;
 
 namespace NetCoreGui.Controls.Layout
 {
-    class GridLayout
+    public class GridLayout
     {
+
     }
 }

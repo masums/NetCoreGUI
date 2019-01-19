@@ -1,5 +1,7 @@
-﻿using NetCoreGui.Base;
+﻿using NetCoreGui.App;
+using NetCoreGui.Base;
 using NetCoreGui.Drivers;
+using NetCoreGui.Events;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace NetCoreGui.Controls.Dialogs
         internal IGraphicsDriver _graphicsDriver;
         internal int _currentZedIndex;
 
+        public IntPtr NativeHandle { get; set; }
         public string Title { get; set; }
         public string Icon { get; set; }
         public bool IsModal { get; set; }
@@ -67,16 +70,10 @@ namespace NetCoreGui.Controls.Dialogs
             GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
 
             var window = new Glfw3.Glfw.Window() { Ptr = GraphicsContext.NativeWindowHandle };
+            NativeHandle = window.Ptr;
 
-            Glfw3.Glfw.SetWindowRefreshCallback(  window, (w) => {
-
-                int width, heihgt;
-                Glfw3.Glfw.GetWindowSize(w, out width, out heihgt);                
-                GraphicsContext.ClearCanvas(Color.WhiteSmoke);                
-                Form.Draw();
-                GraphicsContext.FlushContext();
-            });
+            WindowManager.Add(this);
+            EventManager.RegisterStandardGlfwEvents(window);
         }
-        
     }
 }

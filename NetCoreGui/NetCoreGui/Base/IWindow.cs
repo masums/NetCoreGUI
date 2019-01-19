@@ -22,8 +22,15 @@ namespace NetCoreGui.Base
     }
 
     public interface IWindow
-    {
+    {       
+        IntPtr NativeHandle { get; set; }
+        string Title { get; set; }
+        string Icon { get; set; }
         bool IsModal { get; set; }
+        
+        WindowState State { get; set; }
+        Monitor Monitor { get; set; }
+        IForm Form { get; set; }
         IGraphicsContext GraphicsContext { get; set; } 
         void Start(int lastZedIndex);
     }
