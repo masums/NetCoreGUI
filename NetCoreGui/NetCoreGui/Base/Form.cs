@@ -4,8 +4,8 @@ using System.Text;
 
 namespace NetCoreGui.Base
 {
-    public interface IForm
+    public class Form : Control
     {
-        void Draw();
+
     }
 }

@@ -18,7 +18,7 @@ namespace NetCoreGui.Desktop
             Monitor monitor = gd.GetPrimaryMonitor();
 
             var window = new Window("WOW .Net Core",null, null);
-            var form = new Form() {
+            var form = new Controls.Form() {
                 Size = new Size(300,200),
                 Position = new Base.Rect(20,20, 280,180)
             };
@@ -27,7 +27,7 @@ namespace NetCoreGui.Desktop
             form.Add(new Label() { Text = "Enter your name", Size = new Size(80, 20), Position = new Base.Rect(70, 20, 110, 80) });
             form.Add(new TextBox() { Text = "Edit Text", Size = new Size(200,30), Position = new Rect(100,30, 230,110) });
 
-            window.SetForm(form);
+            window.Add(form);
             Application.Run(window);
         }
     }

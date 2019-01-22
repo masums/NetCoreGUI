@@ -1,7 +1,9 @@
 ﻿using NetCoreGui.Drivers;
+using NetCoreGui.Events;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 
@@ -17,13 +19,14 @@ namespace NetCoreGui.Base
     public abstract class Control
     {
         #region Properties
+        public string Id { get; set; }
         public int ZedIndex { get; set; }
         public bool IsFocused { get; set; }
         public string Text { get; set; }
         public ControlVisibility Visibility { get; set; }
         public Size Size { get; set; }
         public Control Parent { get; set; }
-        public List<Control> Chields { get; private set; }
+        public List<Control> Chields { get; set; }
         public Theme Theme { get; set; }
 
         public Rect Position { get; set; }
@@ -39,8 +42,13 @@ namespace NetCoreGui.Base
         public Control()
         {
             Chields = new List<Control>();
+            OnMouseClick += (object sender, EventArg arg)=> { };
+            OnMouseDoubleClick += (object sender, EventArg arg) => { };
+            OnMouseMove += (object sender, EventArg arg) => { Debug.WriteLine($"Mouse Moved on {Id}"); }; 
+            OnRefresh += (object sender, EventArg arg) => { };
+            OnResize += (object sender, EventArg arg) => { };
         }
-
+        
         public virtual IWindow GetWindow()
         {
             IWindow window = null;
@@ -56,6 +64,11 @@ namespace NetCoreGui.Base
             }
             
             return (IWindow) this;
+        }
+
+        internal void FireMouseMove(double xpos, double ypos)
+        {
+            OnMouseMove(this, new EventArg() {Data = new Point((int) xpos, (int) ypos) });
         }
 
         public virtual void Add(Control chield)
@@ -92,11 +105,11 @@ namespace NetCoreGui.Base
         #endregion
 
         #region Events
-        public event EventHandler OnMouseMove;
-        public event EventHandler OnMouseClick;
-        public event EventHandler OnMouseDoubleClick;
-        public event EventHandler OnResize;
-        public event EventHandler OnRefresh;
+        public event AppEventHandler OnMouseMove;
+        public event AppEventHandler OnMouseClick;
+        public event AppEventHandler OnMouseDoubleClick;
+        public event AppEventHandler OnResize;
+        public event AppEventHandler OnRefresh;
         #endregion
     }
 }

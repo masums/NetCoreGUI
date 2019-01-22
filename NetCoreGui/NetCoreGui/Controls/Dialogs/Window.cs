@@ -1,10 +1,12 @@
-﻿using NetCoreGui.App;
+﻿using Glfw3;
+using NetCoreGui.App;
 using NetCoreGui.Base;
 using NetCoreGui.Drivers;
 using NetCoreGui.Events;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 
@@ -26,12 +28,9 @@ namespace NetCoreGui.Controls.Dialogs
         public WindowState State { get; set; }
         public Monitor Monitor { get; set; }
         
-        public IForm Form { get; set; }
-
         public Window(string title, Window parent = null, Rect position = null)
         {
             _graphicsDriver = new GraphicsDriver();
-            Form = new Form();
 
             Title = title;
             Monitor = _graphicsDriver.GetPrimaryMonitor();
@@ -45,13 +44,7 @@ namespace NetCoreGui.Controls.Dialogs
 
             State = WindowState.Active;
         }
-
-        public void SetForm(Form chield)
-        {
-            chield.Parent = this;
-            Form = chield;
-        }
-
+        
         private void SetDefaultSizeAndPosition()
         {
             var y = (int) Monitor.ResolutionY / 4;
@@ -69,11 +62,10 @@ namespace NetCoreGui.Controls.Dialogs
             ZedIndex = _currentZedIndex = lastZedIndex;
             GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
 
-            var window = new Glfw3.Glfw.Window() { Ptr = GraphicsContext.NativeWindowHandle };
-            NativeHandle = window.Ptr;
-
+            var window = new Glfw.Window() { Ptr = GraphicsContext.NativeWindowHandle };
+            NativeHandle = window.Ptr; 
             WindowManager.Add(this);
             EventManager.RegisterStandardGlfwEvents(window);
-        }
+        } 
     }
 }

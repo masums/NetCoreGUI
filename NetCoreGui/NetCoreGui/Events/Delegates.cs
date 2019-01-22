@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NetCoreGui.Events
 {
-    public delegate void EventHandler(object sender, EventArg arg);
+    public delegate void AppEventHandler(object sender, EventArg arg);
 
     public class EventArg
     {

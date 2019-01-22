@@ -15,8 +15,8 @@ namespace NetCoreGui.Drivers
             Glfw.Init();
             Glfw.SetErrorCallback((error, description) => Console.WriteLine("Error " + error + ": " + description));
             Glfw.WindowHint(Glfw.Hint.Visible, 1);
-            Glfw.WindowHint(Glfw.Hint.Samples, 1);
-            Glfw.WindowHint(Glfw.Hint.Resizable, 1);            
+            Glfw.WindowHint(Glfw.Hint.Samples, 4);
+            Glfw.WindowHint(Glfw.Hint.Resizable, 1);               
         }
 
         public void CloseWindow(IWindow window)

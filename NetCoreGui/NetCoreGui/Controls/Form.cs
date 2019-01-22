@@ -7,7 +7,7 @@ using System.Text;
 
 namespace NetCoreGui.Controls
 { 
-    public class Form : Control, IForm
+    public class Form : Control
     {
         public bool IsActive { get; set; }
 

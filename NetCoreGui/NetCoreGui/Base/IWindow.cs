@@ -29,9 +29,11 @@ namespace NetCoreGui.Base
         bool IsModal { get; set; }
         
         WindowState State { get; set; }
-        Monitor Monitor { get; set; }
-        IForm Form { get; set; }
-        IGraphicsContext GraphicsContext { get; set; } 
+        Monitor Monitor { get; set; }        
+        IGraphicsContext GraphicsContext { get; set; }
+
+        List<Control> Chields { get; set; }
+
         void Start(int lastZedIndex);
     }
 }
