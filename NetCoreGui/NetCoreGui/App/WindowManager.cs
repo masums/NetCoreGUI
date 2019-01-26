@@ -1,5 +1,6 @@
 ﻿using Glfw3;
 using NetCoreGui.Base;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace NetCoreGui.App
     public static class WindowManager
     {
         private static Dictionary<IntPtr,AppWindow> _appWindows = new Dictionary<IntPtr, AppWindow>();
-       
+        private volatile static Control _activeControl = new HiddenControl();
+
         public static void Add(IWindow window)
         {
             _appWindows[window.NativeHandle] = new AppWindow(window);
@@ -26,21 +28,26 @@ namespace NetCoreGui.App
             return null;
         }
 
-        internal static void FireMouseClick(Glfw.Window window, Glfw.MouseButton button, Glfw.InputState state, Glfw.KeyMods mods)
+        internal static void FireMouseClick(Window window, MouseButtonEventArgs e)
         {
-
+            _activeControl.FireMouseClick(window, e);
         }
 
-        internal static void FireMouseMove(Glfw.Window window, double xpos, double ypos)
+        internal static void FireMouseMove(Window window, double xpos, double ypos)
         {
-            var focusedControl = FindWindowControl(window, xpos, ypos); 
-        }
-
-        private static Control FindWindowControl(Glfw.Window window, double xpos, double ypos)
-        {
-            if(_appWindows.ContainsKey(window.Ptr))
+            var ctl = FindWindowControl(window, xpos, ypos);
+            if(ctl != null)
             {
-                var aw = _appWindows[window.Ptr];
+                _activeControl = ctl;
+                _activeControl.FireMouseMove(xpos, ypos);
+            }
+        }
+
+        private static Control FindWindowControl(Window window, double xpos, double ypos)
+        {
+            if(_appWindows.ContainsKey(window.SystemHandle))
+            {
+                var aw = _appWindows[window.SystemHandle];
                 foreach (var item in aw.Window.Chields)
                 {
                     var ctrl = FindControl(item, xpos, ypos);
@@ -69,9 +76,9 @@ namespace NetCoreGui.App
             return null;
         }
 
-        internal static void FireKeyPressed(Glfw.Window window, int scancode, Glfw.InputState state, Glfw.KeyMods mods)
+        internal static void FireKeyPresse(Window window, KeyEventArgs e)
         {
-             
+            _activeControl.FireKeyDown(e);
         }
 
         internal static void FireWindowRefreshed(Glfw.Window w)

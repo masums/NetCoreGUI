@@ -1,44 +1,54 @@
 ﻿using NetCoreGui.Utility;
+using SFML.Graphics;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace NetCoreGui.Drivers
 {
     public class GraphicsContext : IGraphicsContext
     {
-        public GraphicsContext(IntPtr windowHandle, SKCanvas canvas2d)
+        Font ThemeFont;
+        private RenderWindow window;
+
+        public GraphicsContext(SFML.Graphics.RenderWindow window)
         {
-            NativeWindowHandle = windowHandle;
-            GlfwWindow = new Glfw3.Glfw.Window() { Ptr = NativeWindowHandle};
-            Canvas2d = canvas2d;
+            NativeWindowHandle = window.SystemHandle;
+            this.window = window;
+            ThemeFont = new Font("Resources/Fonts/Roboto/Roboto-Regular.ttf");               
         }
 
-        public Glfw3.Glfw.Window GlfwWindow { get; set; }
-        public SkiaSharp.SKCanvas Canvas2d { get; set; }
         public IntPtr NativeWindowHandle { get; set; }
+
+        public RenderWindow Window { get { return window; } set { window = value; } }
 
         public void ClearCanvas(Color color)
         {
-            var skColor = color.ToSkColor();
-            Canvas2d.Clear(skColor);
+            Window.Clear(color);
         }
 
-        public void DrawRect(int left, int top, int width, int height, SKPaint paint)
+        internal void CloseWindow()
         {
-            Canvas2d.DrawRect(left, top, width, height, paint);
+            Window.Close();
         }
 
-        public void DrawText(string text, int left, int top, SKPaint paint)
+        public void DrawRect(int left, int top, int width, int height, Color color, Color outLineColor, float outLineThikness)
         {
-            Canvas2d.DrawText(text, left, top, paint);
+            var rectShape = new RectangleShape(new SFML.System.Vector2f(width, height));
+            rectShape.Position = new SFML.System.Vector2f(left, top);
+            rectShape.FillColor = color;
+            rectShape.OutlineColor = outLineColor;
+            rectShape.OutlineThickness = outLineThikness;
+            Window.Draw(rectShape);
         }
 
-        public void FlushContext()
-        {
-            Canvas2d.Flush();
+        public void DrawText(string text, int left, int top)
+        {            
+            var textShapre = new Text(text, ThemeFont);
+            textShapre.Position = new SFML.System.Vector2f(left, top);
+            textShapre.CharacterSize = 14;
+            textShapre.Color = Color.Black;
+            Window.Draw(textShapre);            
         }
+        
     }
 }

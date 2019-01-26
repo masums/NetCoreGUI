@@ -1,9 +1,10 @@
 ﻿using Glfw3;
 using NetCoreGui.Base;
+using NetCoreGui.Utility;
+using SFML.Graphics;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 
 namespace NetCoreGui.Drivers
@@ -12,52 +13,21 @@ namespace NetCoreGui.Drivers
     {
         public GraphicsDriver()
         {
-            Glfw.Init();
-            Glfw.SetErrorCallback((error, description) => Console.WriteLine("Error " + error + ": " + description));
-            Glfw.WindowHint(Glfw.Hint.Visible, 1);
-            Glfw.WindowHint(Glfw.Hint.Samples, 4);
-            Glfw.WindowHint(Glfw.Hint.Resizable, 1);               
+            
         }
 
         public void CloseWindow(IWindow window)
         {
             var glfGContext = (GraphicsContext) window.GraphicsContext;
-            Glfw.DestroyWindow(glfGContext.GlfwWindow);
+            glfGContext.CloseWindow();
         }
-        public IGraphicsContext CreateWindow(string title, Size size)
+        public IGraphicsContext CreateWindow(string title, System.Drawing.Size size)
         {
-            var window = Glfw.CreateWindow(size.Width, size.Height,title);
-            
-            Glfw.MakeContextCurrent(window);
-
-            GRGlInterface glInterface = GRGlInterface.AssembleGlInterface(window, (contextHandle, name) =>
-                {
-                    var proc = Glfw.GetProcAddress(name);
-                    return proc;
-                }
-            );
-
-            GRContext context = GRContext.Create(GRBackend.OpenGL, glInterface);
-            
-            var brtd = new GRBackendRenderTargetDesc()
-            {
-                Config = GRPixelConfig.Rgba8888,
-                Height = size.Height,
-                Width = size.Width,
-                Origin = GRSurfaceOrigin.TopLeft,
-                RenderTargetHandle = new IntPtr(0),
-                SampleCount = 0,
-                StencilBits = 8
-            };
-
-            var backendRenderTargetDescription = new GRBackendRenderTarget(GRBackend.OpenGL, brtd);
-
-            var surface = SKSurface.Create(context, backendRenderTargetDescription, SKColorType.Rgba8888);            
-            SKCanvas _canvs2d = surface.Canvas;
-            _canvs2d.Clear(SKColors.WhiteSmoke);
-            _canvs2d.Flush();
-            
-            return new GraphicsContext(window.Ptr,_canvs2d);
+            var mode = new SFML.Window.VideoMode((uint)size.Width, (uint)size.Height);
+            var window = new SFML.Graphics.RenderWindow(mode, title);            
+            window.SetFramerateLimit(10);
+            //Register Events
+            return new GraphicsContext(window);
         }
 
         public void DrawControls(IWindow window)

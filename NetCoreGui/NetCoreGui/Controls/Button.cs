@@ -1,4 +1,5 @@
 ﻿using NetCoreGui.Base;
+using NetCoreGui.Utility;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,8 @@ namespace NetCoreGui.Controls
             var window = GetWindow();
             if (window != null)
             {
-                var backPaint = new SKPaint() { Color = SKColors.WhiteSmoke, Style = SKPaintStyle.Fill };
-                var strokPaint = new SKPaint() { Color = SKColors.LightBlue, Style = SKPaintStyle.StrokeAndFill, StrokeWidth = 2, StrokeCap = SKStrokeCap.Square, IsStroke = true };
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, backPaint);
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, strokPaint);
-                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() { Color = SKColors.Black, Style = SKPaintStyle.Fill });
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#DED8CD"), ColorUtil.GetSfmlColor("#00A8E4"), 2);
+                window.GraphicsContext.DrawText(Text, Position.Left + 10 , Position.Top + 6 );
             }   
         }
     }

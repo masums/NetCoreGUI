@@ -1,11 +1,10 @@
-﻿using NetCoreGui.Drivers;
+﻿using Glfw3;
+using NetCoreGui.Drivers;
 using NetCoreGui.Events;
-using SkiaSharp;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Text;
 
 namespace NetCoreGui.Base
 {
@@ -18,13 +17,17 @@ namespace NetCoreGui.Base
 
     public abstract class Control
     {
+        internal IGraphicsContext _graphicsContext;
+        internal volatile object _lock = new object();
+        internal volatile bool _isDrawing = false;
+        
         #region Properties
         public string Id { get; set; }
         public int ZedIndex { get; set; }
         public bool IsFocused { get; set; }
         public string Text { get; set; }
         public ControlVisibility Visibility { get; set; }
-        public Size Size { get; set; }
+        public System.Drawing.Size Size { get; set; }
         public Control Parent { get; set; }
         public List<Control> Chields { get; set; }
         public Theme Theme { get; set; }
@@ -34,21 +37,43 @@ namespace NetCoreGui.Base
         public Rect Padding { get; set; }
         public Rect Margin { get; set; }
         public Alignment Alignment { get; set; }
+
+        internal void FireMouseClick(Window window, MouseButtonEventArgs e)
+        {
+            OnMouseClick(this, new EventArg() { Data = new { Button = e.Button, e.X, e.Y} });
+        }
+
         public Orientation Orientation { get; set; }
         #endregion
 
         #region Public Methods
-        
+
         public Control()
         {
             Chields = new List<Control>();
-            OnMouseClick += (object sender, EventArg arg)=> { };
+
+            OnMouseClick += (object sender, EventArg arg) => { };
             OnMouseDoubleClick += (object sender, EventArg arg) => { };
-            OnMouseMove += (object sender, EventArg arg) => { Debug.WriteLine($"Mouse Moved on {Id}"); }; 
+            OnMouseMove += (object sender, EventArg arg) => { Debug.WriteLine($"Mouse Moved on {Id}"); };
+
+            OnKeyPresse += (object sender, EventArg arg) => { Debug.WriteLine($"Key Pressed on {Id}"); };
+            OnKeyRelease += (object sender, EventArg arg) => { Debug.WriteLine($"Key Released on {Id}"); };
+
             OnRefresh += (object sender, EventArg arg) => { };
             OnResize += (object sender, EventArg arg) => { };
         }
-        
+
+
+        public IGraphicsContext GetGraphicsContext()
+        {
+            if(_graphicsContext == null)
+            {
+                var window = GetWindow();
+                _graphicsContext = window.GraphicsContext;
+            }
+            return _graphicsContext;
+        }
+
         public virtual IWindow GetWindow()
         {
             IWindow window = null;
@@ -62,13 +87,13 @@ namespace NetCoreGui.Base
                 }
                 parent = parent.Parent;
             }
-            
-            return (IWindow) this;
+
+            return (IWindow)this;
         }
 
         internal void FireMouseMove(double xpos, double ypos)
         {
-            OnMouseMove(this, new EventArg() {Data = new Point((int) xpos, (int) ypos) });
+            OnMouseMove(this, new EventArg() { Data = new System.Drawing.Point((int)xpos, (int)ypos) });
         }
 
         public virtual void Add(Control chield)
@@ -83,6 +108,16 @@ namespace NetCoreGui.Base
             Chields.Remove(chield);
         }
 
+        internal void FireKeyDown(KeyEventArgs e)
+        {
+            OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System} });
+        }
+
+        internal void FireKeyUp(Glfw.KeyCode key, int scancode, Glfw.InputState state, Glfw.KeyMods mods)
+        {
+            OnKeyRelease(this, new EventArg() {Data = new { KeyCode = key, ScanCode = scancode, State=state, Mods = mods } });
+        }
+
         public virtual void PerformLayout()
         {
 
@@ -91,11 +126,10 @@ namespace NetCoreGui.Base
         public virtual void Draw()
         {
             var window = GetWindow();
-            if(window != null)
+            if (window != null)
             {
-                var paint = new SKPaint() { Color = SKColors.LightGray, Style = SKPaintStyle.Fill };
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, paint);
-                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() {Color=SKColors.Black, Style= SKPaintStyle.Fill });
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, new SFML.Graphics.Color(255,255,255), new SFML.Graphics.Color(250, 250, 250), 2);
+                window.GraphicsContext.DrawText(Text, Position.Left , Position.Top );
             }
         }
         #endregion
@@ -108,8 +142,16 @@ namespace NetCoreGui.Base
         public event AppEventHandler OnMouseMove;
         public event AppEventHandler OnMouseClick;
         public event AppEventHandler OnMouseDoubleClick;
+
+        public event AppEventHandler OnKeyPresse;
+        public event AppEventHandler OnKeyRelease;
+
         public event AppEventHandler OnResize;
         public event AppEventHandler OnRefresh;
         #endregion
+    }
+
+    public class HiddenControl : Control{
+
     }
 }

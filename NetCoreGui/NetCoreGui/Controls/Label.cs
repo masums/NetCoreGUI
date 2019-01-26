@@ -13,7 +13,7 @@ namespace NetCoreGui.Controls
             var window = GetWindow();
             if (window != null)
             {
-                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top + 20, new SKPaint() { Color = SKColors.Black, Style = SKPaintStyle.Fill });
+                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top);
             }
         }
     }

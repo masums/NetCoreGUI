@@ -12,14 +12,14 @@ using System.Text;
 
 namespace NetCoreGui.Controls.Dialogs
 {
-    
-    
     public class Window : Control, IWindow
     {
         internal IGraphicsDriver _graphicsDriver;
         internal int _currentZedIndex;
+        internal SFML.Graphics.RenderWindow _nativeWindow;
 
         public IntPtr NativeHandle { get; set; }
+
         public string Title { get; set; }
         public string Icon { get; set; }
         public bool IsModal { get; set; }
@@ -33,7 +33,7 @@ namespace NetCoreGui.Controls.Dialogs
             _graphicsDriver = new GraphicsDriver();
 
             Title = title;
-            Monitor = _graphicsDriver.GetPrimaryMonitor();
+            //Monitor = _graphicsDriver.GetPrimaryMonitor();
             Parent = parent;
             Position = position;
             
@@ -62,10 +62,10 @@ namespace NetCoreGui.Controls.Dialogs
             ZedIndex = _currentZedIndex = lastZedIndex;
             GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
 
-            var window = new Glfw.Window() { Ptr = GraphicsContext.NativeWindowHandle };
-            NativeHandle = window.Ptr; 
+            NativeHandle = GraphicsContext.NativeWindowHandle; 
+            
             WindowManager.Add(this);
-            EventManager.RegisterStandardGlfwEvents(window);
+            EventManager.RegisterEvents(GraphicsContext.Window);
         } 
     }
 }
