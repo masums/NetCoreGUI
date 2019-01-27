@@ -1,12 +1,12 @@
-﻿using Glfw3;
-using NetCoreGui.Drivers;
+﻿using NetCoreGui.Drivers;
 using NetCoreGui.Events;
+using NetCoreGui.Utility;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace NetCoreGui.Base
+namespace NetCoreGui.Themes
 {
     public enum ControlVisibility
     {
@@ -113,9 +113,9 @@ namespace NetCoreGui.Base
             OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System} });
         }
 
-        internal void FireKeyUp(Glfw.KeyCode key, int scancode, Glfw.InputState state, Glfw.KeyMods mods)
+        internal void FireKeyUp(KeyEventArgs e)
         {
-            OnKeyRelease(this, new EventArg() {Data = new { KeyCode = key, ScanCode = scancode, State=state, Mods = mods } });
+            OnKeyRelease(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
         }
 
         public virtual void PerformLayout()
@@ -128,7 +128,7 @@ namespace NetCoreGui.Base
             var window = GetWindow();
             if (window != null)
             {
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, new SFML.Graphics.Color(255,255,255), new SFML.Graphics.Color(250, 250, 250), 2);
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"), ColorUtil.GetSfmlColor("#00A8E4"), 1);
                 window.GraphicsContext.DrawText(Text, Position.Left , Position.Top );
             }
         }

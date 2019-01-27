@@ -1,4 +1,4 @@
-﻿using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,7 +9,6 @@ namespace NetCoreGui.Drivers
 {
     public interface IGraphicsDriver
     {
-        Monitor GetPrimaryMonitor();
         IGraphicsContext CreateWindow(string title, Size size);
         void CloseWindow(IWindow window);
         void DrawControls(IWindow window);

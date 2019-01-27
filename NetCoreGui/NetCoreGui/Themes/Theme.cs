@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SFML.Graphics;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 
-namespace NetCoreGui.Base
+namespace NetCoreGui.Themes
 {
     public abstract class Theme
     {

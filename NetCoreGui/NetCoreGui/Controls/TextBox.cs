@@ -1,11 +1,8 @@
-﻿using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using NetCoreGui.Utility;
 using SFML.Window;
-using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace NetCoreGui.Controls
 {
@@ -20,6 +17,7 @@ namespace NetCoreGui.Controls
         {
             if(arg.Data.Code == Keyboard.Key.BackSpace)
             {
+                if( Text.Length > 0 )
                 Text = Text.Substring(0, Text.Length - 1);
             }
             else if(arg.Data.Code == Keyboard.Key.Return)
@@ -43,7 +41,7 @@ namespace NetCoreGui.Controls
                 {
                     _isDrawing = true;
 
-                    gcxt.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, new SFML.Graphics.Color(250, 250, 250), ColorUtil.GetSfmlColor("#00A8E4"), 2);
+                    gcxt.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, new SFML.Graphics.Color(250, 250, 250), ColorUtil.GetSfmlColor("#00A8E4"), 1);
                     gcxt.DrawText(Text, Position.Left + 10 , Position.Top + 6 );
 
                     _isDrawing = false;

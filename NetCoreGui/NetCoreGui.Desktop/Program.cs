@@ -1,4 +1,4 @@
-﻿using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using NetCoreGui.Controls;
 using NetCoreGui.Controls.Dialogs;
 using NetCoreGui.Drivers;
@@ -21,11 +21,11 @@ namespace NetCoreGui.Desktop
             var form = new Controls.Form()
             {
                 Size = new Size(600, 600),
-                Position = new Base.Rect(20, 20, 620, 620)
+                Position = new Themes.Rect(20, 20, 620, 620)
             };
 
-            form.Add(new Button() { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100,30), Position = new Base.Rect(30,30, 130, 60)});
-            form.Add(new Label()  { Id = "nameLbl", Text = "Enter your name", Size = new Size(80, 20), Position = new Base.Rect(70, 20, 110, 80) });
+            form.Add(new Button() { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100,30), Position = new Themes.Rect(30,30, 130, 60)});
+            form.Add(new Label()  { Id = "nameLbl", Text = "Enter your name", Size = new Size(80, 20), Position = new Themes.Rect(70, 20, 110, 80) });
             form.Add(new TextBox(){ Id = "inputTxt", Text = "Edit Text", Size = new Size(200,30), Position = new Rect(100,30, 230,110) });
 
             window.Add(form);

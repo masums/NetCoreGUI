@@ -1,11 +1,11 @@
-﻿using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NetCoreGui.Themes
 {
-    public class LiteTheme : Theme
+    public class LiteTheme : Themes.Theme
     {
     }
 }

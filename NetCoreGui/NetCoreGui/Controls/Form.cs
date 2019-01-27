@@ -1,13 +1,9 @@
-﻿using NetCoreGui.Base;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
+﻿using NetCoreGui.Themes;
+using NetCoreGui.Utility;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace NetCoreGui.Controls
-{ 
+{
     public class Form : Control
     {
         public bool IsActive { get; set; }
@@ -18,7 +14,7 @@ namespace NetCoreGui.Controls
             if (window != null)
             {
 
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, new SFML.Graphics.Color(255, 255, 255), new SFML.Graphics.Color(255, 255, 255), 1);
+                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"));
                 
                 var sortedChildrens = Chields.OrderBy(x => x.ZedIndex).ToList();
                 foreach (var item in Chields)

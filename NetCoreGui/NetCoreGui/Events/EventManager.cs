@@ -1,12 +1,8 @@
-﻿using Glfw3;
-using NetCoreGui.App;
+﻿using NetCoreGui.App;
 using SFML.Graphics;
 using SFML.Window;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace NetCoreGui.Events
 {
@@ -18,9 +14,18 @@ namespace NetCoreGui.Events
             window.KeyPressed += Window_KeyPressed;
             window.MouseMoved += Window_MouseMoved;
             window.MouseButtonReleased += Window_MouseButtonReleased;
+            window.Resized += Window_Resized;
         }
 
-        private static void Window_MouseButtonReleased(object sender, MouseButtonEventArgs e)
+        private static void Window_Resized(object sender, SizeEventArgs e)
+        {
+            var window = (RenderWindow) sender;
+            FloatRect visibleArea = new FloatRect(0, 0, e.Width, e.Height);
+            window.SetView(new View(visibleArea));
+
+        }
+
+    private static void Window_MouseButtonReleased(object sender, MouseButtonEventArgs e)
         {
             WindowManager.FireMouseClick((Window)sender, e);
         }
@@ -40,33 +45,6 @@ namespace NetCoreGui.Events
             var window = (Window)sender;
             window.Close();
         }
-
-        private static void OnMouseClick(Window window, MouseButtonEventArgs e)
-        {
-            WindowManager.FireMouseClick(window, e);
-        }
-
-        private static void OnMouseMove(Window window, double xpos, double ypos)
-        {
-            WindowManager.FireMouseMove(window, xpos, ypos);
-        }
         
-        
-       private static void OnWindowRefresh(Glfw.Window w) {
-
-            int width, heihgt;
-            Glfw.GetWindowSize(w, out width, out heihgt);
-            var window = WindowManager.Get(w.Ptr);
-
-            if(window != null)
-            {
-                WindowManager.FireWindowRefreshed(w);
-                window.GraphicsContext.ClearCanvas(Color.Transparent);
-                foreach (var item in window.Chields.OrderBy(x => x.ZedIndex).ToList())
-                {
-                    item.Draw();
-                }
-            }
-        }
     }
 }

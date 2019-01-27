@@ -1,6 +1,4 @@
-﻿using NetCoreGui.Utility;
-using SFML.Graphics;
-using SkiaSharp;
+﻿using SFML.Graphics;
 using System;
 
 namespace NetCoreGui.Drivers
@@ -38,6 +36,14 @@ namespace NetCoreGui.Drivers
             rectShape.FillColor = color;
             rectShape.OutlineColor = outLineColor;
             rectShape.OutlineThickness = outLineThikness;
+            Window.Draw(rectShape);
+        }
+
+        public void DrawRect(int left, int top, int width, int height, Color color)
+        {
+            var rectShape = new RectangleShape(new SFML.System.Vector2f(width, height));
+            rectShape.Position = new SFML.System.Vector2f(left, top);
+            rectShape.FillColor = color;
             Window.Draw(rectShape);
         }
 

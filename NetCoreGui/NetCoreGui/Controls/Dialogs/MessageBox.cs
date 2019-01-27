@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using NetCoreGui.Base;
+using NetCoreGui.Themes;
 
 namespace NetCoreGui.Controls.Dialogs
 {

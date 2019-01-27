@@ -1,14 +1,9 @@
-﻿using Glfw3;
-using NetCoreGui.App;
-using NetCoreGui.Base;
+﻿using NetCoreGui.App;
+using NetCoreGui.Themes;
 using NetCoreGui.Drivers;
 using NetCoreGui.Events;
-using SkiaSharp;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 
 namespace NetCoreGui.Controls.Dialogs
 {

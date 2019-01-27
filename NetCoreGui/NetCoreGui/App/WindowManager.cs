@@ -1,10 +1,7 @@
-﻿using Glfw3;
-using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NetCoreGui.App
 {
@@ -81,7 +78,7 @@ namespace NetCoreGui.App
             _activeControl.FireKeyDown(e);
         }
 
-        internal static void FireWindowRefreshed(Glfw.Window w)
+        internal static void FireWindowRefreshed(Window window)
         {
              
         }

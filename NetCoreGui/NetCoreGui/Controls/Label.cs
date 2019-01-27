@@ -1,8 +1,4 @@
-﻿using NetCoreGui.Base;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NetCoreGui.Themes;
 
 namespace NetCoreGui.Controls
 {

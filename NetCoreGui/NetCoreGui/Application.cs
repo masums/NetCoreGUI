@@ -1,14 +1,8 @@
-﻿using Glfw3;
-using NetCoreGui.Base;
+﻿using NetCoreGui.Themes;
 using NetCoreGui.Drivers;
-using NetCoreGui.Events;
 using NetCoreGui.Utility;
-using SFML.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace NetCoreGui
