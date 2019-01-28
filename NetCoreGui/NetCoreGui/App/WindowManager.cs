@@ -1,4 +1,4 @@
-﻿using NetCoreGui.Drawing;
+﻿using NetCoreGui.Themes;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace NetCoreGui.Utility
     public static class WindowManager
     {
         private static Dictionary<IntPtr, AppWindow> _appWindows = new Dictionary<IntPtr, AppWindow>();
-        private volatile static Control _activeControl = new HiddenControl();
+        private volatile static Control _activeControl = new HiddenControl(null);
 
         public static void Add(IWindow window)
         {

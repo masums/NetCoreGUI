@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace NetCoreGui.Drawing
+namespace NetCoreGui.Themes
 {
     public enum ControlVisibility
     {
@@ -57,7 +57,7 @@ namespace NetCoreGui.Drawing
         public Control(Control parent)
         {
             Chields = new List<Control>();
-
+            
             Parent = parent;
 
             OnMouseClick += (object sender, EventArg arg) => { };
@@ -160,7 +160,7 @@ namespace NetCoreGui.Drawing
     }
 
     public class HiddenControl : Control{
-        public HiddenControl():base(null)
+        public HiddenControl(Control parent):base(parent)
         {
             Visibility = ControlVisibility.Hidden;
         }
