@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.App
+namespace NetCoreGui.Utility
 {
     public class Geometry
     {

@@ -6,27 +6,22 @@ namespace NetCoreGui.Drivers
     public class GraphicsContext : IGraphicsContext
     {
         Font ThemeFont;
-        private RenderWindow window;
+        private RenderWindow _nativeWindow;
 
-        public GraphicsContext(SFML.Graphics.RenderWindow window)
+        public GraphicsContext(RenderWindow nativeWindow)
         {
-            NativeWindowHandle = window.SystemHandle;
-            this.window = window;
+            NativeWindowHandle = nativeWindow.SystemHandle;
+            _nativeWindow = nativeWindow;
             ThemeFont = new Font("Resources/Fonts/Roboto/Roboto-Regular.ttf");               
         }
 
         public IntPtr NativeWindowHandle { get; set; }
 
-        public RenderWindow Window { get { return window; } set { window = value; } }
+        public RenderWindow Window { get { return _nativeWindow; } set { _nativeWindow = value; } }
 
         public void ClearCanvas(Color color)
         {
-            Window.Clear(color);
-        }
-
-        internal void CloseWindow()
-        {
-            Window.Close();
+            _nativeWindow.Clear(color);
         }
 
         public void DrawRect(int left, int top, int width, int height, Color color, Color outLineColor, float outLineThikness)
@@ -51,7 +46,7 @@ namespace NetCoreGui.Drivers
         {            
             var textShapre = new Text(text, ThemeFont);
             textShapre.Position = new SFML.System.Vector2f(left, top);
-            textShapre.CharacterSize = 14;
+            textShapre.CharacterSize = 12;
             textShapre.Color = Color.Black;
             Window.Draw(textShapre);            
         }

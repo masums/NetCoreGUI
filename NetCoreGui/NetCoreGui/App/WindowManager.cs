@@ -1,13 +1,13 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
 
-namespace NetCoreGui.App
+namespace NetCoreGui.Utility
 {
     public static class WindowManager
     {
-        private static Dictionary<IntPtr,AppWindow> _appWindows = new Dictionary<IntPtr, AppWindow>();
+        private static Dictionary<IntPtr, AppWindow> _appWindows = new Dictionary<IntPtr, AppWindow>();
         private volatile static Control _activeControl = new HiddenControl();
 
         public static void Add(IWindow window)
@@ -63,7 +63,7 @@ namespace NetCoreGui.App
         {
             foreach (var item in control.Chields)
             {
-                if (Geometry.IsInsideRect(item.Position.Left, item.Position.Top, item.Position.Right, item.Position.Bottom, xpos, ypos))
+                if (Geometry.IsInsideRect(item.Position.x, item.Position.y, item.Position.x + item.Size.Width, item.Position.y+item.Size.Height, xpos, ypos))
                 {
                     return item;
                 }

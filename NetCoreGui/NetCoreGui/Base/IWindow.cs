@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Drawing
 {
     public enum WindowState
     {
@@ -29,11 +29,12 @@ namespace NetCoreGui.Themes
         bool IsModal { get; set; }
         
         WindowState State { get; set; }
-        Monitor Monitor { get; set; }        
+             
         IGraphicsContext GraphicsContext { get; set; }
 
         List<Control> Chields { get; set; }
 
-        void Start(int lastZedIndex);
+        void Create(int lastZedIndex);
+        void DrawControls();
     }
 }

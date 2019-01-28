@@ -1,10 +1,10 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using NetCoreGui.Controls;
 using NetCoreGui.Controls.Dialogs;
 using NetCoreGui.Drivers;
 using System;
 using System.Diagnostics;
-using System.Drawing;
+using NetCoreGui.Utility;
 
 namespace NetCoreGui.Desktop
 {
@@ -14,19 +14,17 @@ namespace NetCoreGui.Desktop
         {
             Console.WriteLine("Hello GUI World!, Let's core, let's cross");
             var gd = new GraphicsDriver();
-            //Application.Init(Process.GetCurrentProcess().Handle);
-            //Monitor monitor = gd.GetPrimaryMonitor();
-
-            var window = new Window("WOW .Net Core", null, new Rect(0, 0, 630, 630));
-            var form = new Controls.Form()
+      
+            var window = new Window("WOW .Net Core");
+            var form = new Form(window)
             {
                 Size = new Size(600, 600),
-                Position = new Themes.Rect(20, 20, 620, 620)
+                Position = new Point(0, 0)
             };
 
-            form.Add(new Button() { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100,30), Position = new Themes.Rect(30,30, 130, 60)});
-            form.Add(new Label()  { Id = "nameLbl", Text = "Enter your name", Size = new Size(80, 20), Position = new Themes.Rect(70, 20, 110, 80) });
-            form.Add(new TextBox(){ Id = "inputTxt", Text = "Edit Text", Size = new Size(200,30), Position = new Rect(100,30, 230,110) });
+            form.Add(new Button(form) { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100,30), Position = new Point(30,30)});
+            form.Add(new Label(form)  { Id = "nameLbl",    Text = "Enter your name", Size = new Size(100, 20), Position = new Point(30, 70) });
+            form.Add(new TextBox(form){ Id = "inputTxt",   Text = "Edit Text", Size = new Size(200,30), Position = new Point(30,100) });
 
             window.Add(form);
             Application.Run(window);

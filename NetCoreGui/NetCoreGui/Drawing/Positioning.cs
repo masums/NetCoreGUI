@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Drawing
 {
-    //public class Size
-    //{
-    //    public Size(int width, int height)
-    //    {
-    //        Width = width;
-    //        Height = height;
-    //    }
-    //    public int Width { get; set; }
-    //    public int Height { get; set; }
-    //}
+    public class Size
+    {
+        public Size(int width, int height)
+        {
+            Width = width;
+            Height = height;
+        }
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+
+    public class Point
+    {
+        public int x, y;
+        public Point(int x, int y)
+        {
+            this.x = x; this.y = y;
+        }
+    }
 
     public class Rect
     {

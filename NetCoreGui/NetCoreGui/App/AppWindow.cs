@@ -1,10 +1,10 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace NetCoreGui.App
+namespace NetCoreGui.Utility
 {
     public class AppWindow
     {

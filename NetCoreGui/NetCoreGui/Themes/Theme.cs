@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Drawing
 {
     public abstract class Theme
     {

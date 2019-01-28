@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Drawing
 {
     public enum ControlVisibility
     {
@@ -20,19 +20,25 @@ namespace NetCoreGui.Themes
         internal IGraphicsContext _graphicsContext;
         internal volatile object _lock = new object();
         internal volatile bool _isDrawing = false;
-        
+        internal Point _actualPosition;
+        private Point _position;
+
         #region Properties
         public string Id { get; set; }
         public int ZedIndex { get; set; }
         public bool IsFocused { get; set; }
         public string Text { get; set; }
+
         public ControlVisibility Visibility { get; set; }
-        public System.Drawing.Size Size { get; set; }
+
+        public Size Size { get; set; }
+
         public Control Parent { get; set; }
         public List<Control> Chields { get; set; }
         public Theme Theme { get; set; }
 
-        public Rect Position { get; set; }
+        public Point Position { get => _position; set => _position = value; }
+
         public List<Anchor> Anchors { get; set; }
         public Rect Padding { get; set; }
         public Rect Margin { get; set; }
@@ -40,7 +46,7 @@ namespace NetCoreGui.Themes
 
         internal void FireMouseClick(Window window, MouseButtonEventArgs e)
         {
-            OnMouseClick(this, new EventArg() { Data = new { Button = e.Button, e.X, e.Y} });
+            OnMouseClick(this, new EventArg() { Data = new { Button = e.Button, e.X, e.Y } });
         }
 
         public Orientation Orientation { get; set; }
@@ -48,9 +54,11 @@ namespace NetCoreGui.Themes
 
         #region Public Methods
 
-        public Control()
+        public Control(Control parent)
         {
             Chields = new List<Control>();
+
+            Parent = parent;
 
             OnMouseClick += (object sender, EventArg arg) => { };
             OnMouseDoubleClick += (object sender, EventArg arg) => { };
@@ -66,7 +74,7 @@ namespace NetCoreGui.Themes
 
         public IGraphicsContext GetGraphicsContext()
         {
-            if(_graphicsContext == null)
+            if (_graphicsContext == null)
             {
                 var window = GetWindow();
                 _graphicsContext = window.GraphicsContext;
@@ -110,7 +118,7 @@ namespace NetCoreGui.Themes
 
         internal void FireKeyDown(KeyEventArgs e)
         {
-            OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System} });
+            OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
         }
 
         internal void FireKeyUp(KeyEventArgs e)
@@ -128,8 +136,8 @@ namespace NetCoreGui.Themes
             var window = GetWindow();
             if (window != null)
             {
-                window.GraphicsContext.DrawRect(Position.Left, Position.Top, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"), ColorUtil.GetSfmlColor("#00A8E4"), 1);
-                window.GraphicsContext.DrawText(Text, Position.Left , Position.Top );
+                window.GraphicsContext.DrawRect(Position.x, Position.y, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"), ColorUtil.GetSfmlColor("#00A8E4"), 1);
+                window.GraphicsContext.DrawText(Text, Position.x, Position.y);
             }
         }
         #endregion
@@ -152,6 +160,9 @@ namespace NetCoreGui.Themes
     }
 
     public class HiddenControl : Control{
-
+        public HiddenControl():base(null)
+        {
+            Visibility = ControlVisibility.Hidden;
+        }
     }
 }

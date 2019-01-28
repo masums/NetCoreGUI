@@ -1,4 +1,4 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using NetCoreGui.Drivers;
 using NetCoreGui.Controls;
 using System;
@@ -10,7 +10,7 @@ namespace NetCoreGui.Desktop.Views
 {
     public class MainWindow : Window
     {
-        public MainWindow(string title, Window parent = null, Rect position = null) :base(title,parent,position)
+        public MainWindow(string title, Window parent = null, Point position = null) :base(title,parent,position)
         {
 
         }

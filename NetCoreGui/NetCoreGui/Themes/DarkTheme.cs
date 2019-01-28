@@ -1,11 +1,11 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Drawing
 {
-    public class DarkTheme : Themes.Theme
+    public class DarkTheme : Drawing.Theme
     {
     }
 }

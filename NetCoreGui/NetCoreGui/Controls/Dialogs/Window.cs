@@ -1,9 +1,9 @@
-﻿using NetCoreGui.App;
-using NetCoreGui.Themes;
+﻿using NetCoreGui.Utility;
+using NetCoreGui.Drawing;
 using NetCoreGui.Drivers;
 using NetCoreGui.Events;
 using System;
-using System.Drawing;
+using SFML.Window;
 
 namespace NetCoreGui.Controls.Dialogs
 {
@@ -21,14 +21,12 @@ namespace NetCoreGui.Controls.Dialogs
         
         public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
-        public Monitor Monitor { get; set; }
         
-        public Window(string title, Window parent = null, Rect position = null)
+        public Window(string title, Window parent = null, Point position = null) : base(null)
         {
             _graphicsDriver = new GraphicsDriver();
 
             Title = title;
-            //Monitor = _graphicsDriver.GetPrimaryMonitor();
             Parent = parent;
             Position = position;
             
@@ -42,9 +40,11 @@ namespace NetCoreGui.Controls.Dialogs
         
         private void SetDefaultSizeAndPosition()
         {
-            var y = (int) Monitor.ResolutionY / 4;
-            var x = (int) Monitor.ResolutionX / 4;
-            Position = new Rect(x, y, x + 400, y + 400);
+            var videoMode = VideoMode.DesktopMode;
+            var y = (int) videoMode.Height / 4;
+            var x = (int) videoMode.Width / 4;
+            Position = new Point(x, y);
+            Size = new Size(x + 400, y + 400);
         }
 
         internal void Show()
@@ -52,15 +52,23 @@ namespace NetCoreGui.Controls.Dialogs
             
         }
 
-        public void Start(int lastZedIndex)
+        public void Create(int lastZedIndex)
         {
             ZedIndex = _currentZedIndex = lastZedIndex;
-            GraphicsContext = _graphicsDriver.CreateWindow(Title, new Size(Position.Right-Position.Left, Position.Bottom-Position.Top));
+            GraphicsContext = _graphicsDriver.CreateWindow(Title, Size);
 
             NativeHandle = GraphicsContext.NativeWindowHandle; 
             
             WindowManager.Add(this);
             EventManager.RegisterEvents(GraphicsContext.Window);
         } 
+
+        public void DrawControls()
+        {
+            foreach (var item in Chields)
+            {
+                item.Draw();
+            }
+        }
     }
 }

@@ -1,15 +1,20 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 
 namespace NetCoreGui.Controls
 {
     public class Label : Control
     {
+        public Label(Control parent) : base(parent)
+        {
+
+        }
+
         public override void Draw()
         {
             var window = GetWindow();
             if (window != null)
             {
-                window.GraphicsContext.DrawText(Text, Position.Left + 10, Position.Top);
+                window.GraphicsContext.DrawText(Text, Position.x, Position.y);
             }
         }
     }

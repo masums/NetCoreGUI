@@ -1,26 +1,23 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Drawing;
 using System;
 
 namespace NetCoreGui.Drivers
 {
     public class GraphicsDriver : IGraphicsDriver
     {
-        public GraphicsDriver()
-        {
-            
-        }
+        private readonly uint _frameRate;
 
-        public void CloseWindow(IWindow window)
+        public GraphicsDriver(uint frameRate = 15)
         {
-            var glfGContext = (GraphicsContext) window.GraphicsContext;
-            glfGContext.CloseWindow();
-        }
-        public IGraphicsContext CreateWindow(string title, System.Drawing.Size size)
+            _frameRate = frameRate;
+        } 
+
+        public IGraphicsContext CreateWindow(string title, Size size, SFML.Window.Styles style = SFML.Window.Styles.Default)
         {
+            SFML.Window.ContextSettings contextSettings = new SFML.Window.ContextSettings(24,8,8);
             var mode = new SFML.Window.VideoMode((uint)size.Width, (uint)size.Height);
-            var window = new SFML.Graphics.RenderWindow(mode, title);            
-            window.SetFramerateLimit(10);
-            //Register Events
+            var window = new SFML.Graphics.RenderWindow(mode, title, style);            
+            window.SetFramerateLimit(_frameRate);            
             return new GraphicsContext(window);
         }
 
