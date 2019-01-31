@@ -4,6 +4,8 @@ using NetCoreGui.Drivers;
 using NetCoreGui.Events;
 using System;
 using SFML.Window;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace NetCoreGui.Controls.Dialogs
 {
@@ -21,7 +23,8 @@ namespace NetCoreGui.Controls.Dialogs
         
         public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
-        
+        public Theme Theme { get; set; }
+
         public Window(string title, Window parent = null, Point position = null) : base(null)
         {
             _graphicsDriver = new GraphicsDriver();
@@ -61,13 +64,47 @@ namespace NetCoreGui.Controls.Dialogs
             
             WindowManager.Add(this);
             EventManager.RegisterEvents(GraphicsContext.Window);
+            Theme = Application.Theme;
         } 
 
         public void DrawControls()
         {
-            foreach (var item in Chields)
+            RenderControls(Chields);
+        }
+
+        private void RenderControls(List<Control> chields)
+        {
+            var orderdControlList = chields.OrderBy(x => x.ZedIndex).ToList();
+
+            foreach (var item in orderdControlList)
             {
-                item.Draw();
+                switch (item)
+                {
+                    case Button control:
+                        Theme.DrawButton(control);
+                        break;
+
+                    case TextBox control:
+                        Theme.DrawTextBox(control);
+                        break;
+
+                    case Label control:
+                        Theme.DrawLabel(control);
+                        break;
+
+                    case Form control:
+                        Theme.DrawForm(control);
+                        break;
+
+                    default:
+                        Theme.DrawControl(item);
+                        break;
+                }
+
+                if (item.Chields.Count > 0)
+                {
+                    RenderControls(item.Chields);
+                }
             }
         }
     }

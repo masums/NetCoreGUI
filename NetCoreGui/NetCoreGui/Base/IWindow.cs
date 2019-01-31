@@ -24,6 +24,8 @@ namespace NetCoreGui.Themes
     public interface IWindow
     {       
         IntPtr NativeHandle { get; set; }
+
+        Theme Theme { get; set; }
         string Title { get; set; }
         string Icon { get; set; }
         bool IsModal { get; set; }

@@ -28,29 +28,28 @@ namespace NetCoreGui.Controls
             { 
                 Text += arg.Data.Code;
             }
-            Draw();
+            //Draw();
         }
 
-        public override void Draw()
-        {
-            try
-            {
-                var gcxt = GetGraphicsContext();
+        //public override void Draw()
+        //{
+        //    try
+        //    {
+        //        var gcxt = GetGraphicsContext();
 
-                if (gcxt != null && _isDrawing == false)
-                {
-                    _isDrawing = true;
+        //        if (gcxt != null && _isDrawing == false)
+        //        {
+        //            _isDrawing = true;
 
-                    gcxt.DrawRect(Position.x, Position.y, Size.Width, Size.Height, new SFML.Graphics.Color(250, 250, 250), ColorUtil.GetSfmlColor("#00A8E4"), 1);
-                    gcxt.DrawText(Text, Position.x + 10 , Position.y + 6 );
+        //            Theme.DrawTextBox(this);
 
-                    _isDrawing = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Control:Drawing:", ex.Message);
-            }            
-        }
+        //            _isDrawing = false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine("Control:Drawing:", ex.Message);
+        //    }            
+        //}
     }
 }

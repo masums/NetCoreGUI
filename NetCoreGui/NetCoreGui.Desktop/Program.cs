@@ -15,7 +15,7 @@ namespace NetCoreGui.Desktop
             Console.WriteLine("Hello GUI World!, Let's core, let's cross");
             var gd = new GraphicsDriver();
       
-            var window = new Window("WOW .Net Core");
+            var window = new Window( Info.LibraryName + " v" + Info.Version );
             var form = new Form(window)
             {
                 Size = new Size(600, 600),
@@ -27,7 +27,7 @@ namespace NetCoreGui.Desktop
             form.Add(new TextBox(form){ Id = "inputTxt",   Text = "Edit Text", Size = new Size(200,30), Position = new Point(30,100) });
 
             window.Add(form);
-            Application.Run(window);
+            Application.Create().Run(window);
         }
     }
 }

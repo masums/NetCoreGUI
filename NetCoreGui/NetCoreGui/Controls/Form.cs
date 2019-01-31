@@ -13,19 +13,19 @@ namespace NetCoreGui.Controls
             
         }
 
-        public override void Draw()
-        {
-            var window = GetWindow();
-            if (window != null)
-            {
-                window.GraphicsContext.DrawRect(Position.x, Position.y, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"));
+        //public override void Draw()
+        //{
+        //    var window = GetWindow();
+        //    if (window != null)
+        //    {
+        //        window.GraphicsContext.DrawRect(Position.x, Position.y, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"));
                 
-                var sortedChildrens = Chields.OrderBy(x => x.ZedIndex).ToList();
-                foreach (var item in Chields)
-                {
-                    item.Draw();
-                }
-            }
-        }
+        //        var sortedChildrens = Chields.OrderBy(x => x.ZedIndex).ToList();
+        //        foreach (var item in Chields)
+        //        {
+        //            item.Draw();
+        //        }
+        //    }
+        //}
     }
 }

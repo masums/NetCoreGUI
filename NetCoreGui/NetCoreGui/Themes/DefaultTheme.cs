@@ -5,9 +5,9 @@ using NetCoreGui.Drivers;
 
 namespace NetCoreGui.Themes
 {
-    public class DarkTheme : Theme
+    public class DefaultTheme : Theme
     {
-        public DarkTheme()
+        public DefaultTheme()
         {
 
         }

@@ -53,10 +53,28 @@ namespace NetCoreGui.Themes
         Vertical        
     };
 
-    public class Anchor
+    public enum Anchor
     {
-        public Control Neighbour { get; set; }
-        public Alignment OwnPostion { get; set; }
-        public Alignment NeighbourPostion { get; set; }
+        Top ,
+        Left, 
+        Right ,
+        Bottom,
+        Fill
+    }
+
+    public struct DefaultPadding
+    {
+        public static int Top = 3;
+        public static int Left = 3;
+        public static int Right = 3;
+        public static int Bottom = 3;
+    }
+
+    public struct DefaultMargin
+    {
+        public static int Top = 3;
+        public static int Left = 3;
+        public static int Right = 3;
+        public static int Bottom = 3;
     }
 }

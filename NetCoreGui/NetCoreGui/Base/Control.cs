@@ -18,10 +18,13 @@ namespace NetCoreGui.Themes
     public abstract class Control
     {
         internal IGraphicsContext _graphicsContext;
+        
         internal volatile object _lock = new object();
         internal volatile bool _isDrawing = false;
-        internal Point _actualPosition;
-        private Point _position;
+
+        internal Point _calclutedPosition;
+        internal Size _calclutedSize;
+        internal Point _position;
 
         #region Properties
         public string Id { get; set; }
@@ -35,21 +38,16 @@ namespace NetCoreGui.Themes
 
         public Control Parent { get; set; }
         public List<Control> Chields { get; set; }
-        public Theme Theme { get; set; }
-
+        
         public Point Position { get => _position; set => _position = value; }
 
         public List<Anchor> Anchors { get; set; }
         public Rect Padding { get; set; }
         public Rect Margin { get; set; }
         public Alignment Alignment { get; set; }
-
-        internal void FireMouseClick(Window window, MouseButtonEventArgs e)
-        {
-            OnMouseClick(this, new EventArg() { Data = new { Button = e.Button, e.X, e.Y } });
-        }
-
+        
         public Orientation Orientation { get; set; }
+        
         #endregion
 
         #region Public Methods
@@ -57,8 +55,12 @@ namespace NetCoreGui.Themes
         public Control(Control parent)
         {
             Chields = new List<Control>();
-            
+            Anchors = new List<Anchor>();
+
             Parent = parent;
+
+            Padding = new Rect(DefaultPadding.Top, DefaultPadding.Left, DefaultPadding.Right, DefaultPadding.Bottom);
+            Margin  = new Rect(DefaultMargin.Top, DefaultMargin.Left, DefaultMargin.Right, DefaultMargin.Bottom);
 
             OnMouseClick += (object sender, EventArg arg) => { };
             OnMouseDoubleClick += (object sender, EventArg arg) => { };
@@ -98,12 +100,7 @@ namespace NetCoreGui.Themes
 
             return (IWindow)this;
         }
-
-        internal void FireMouseMove(double xpos, double ypos)
-        {
-            OnMouseMove(this, new EventArg() { Data = new System.Drawing.Point((int)xpos, (int)ypos) });
-        }
-
+        
         public virtual void Add(Control chield)
         {
             chield.Parent = this;
@@ -115,31 +112,20 @@ namespace NetCoreGui.Themes
             chield.Parent = null;
             Chields.Remove(chield);
         }
-
-        internal void FireKeyDown(KeyEventArgs e)
-        {
-            OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
-        }
-
-        internal void FireKeyUp(KeyEventArgs e)
-        {
-            OnKeyRelease(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
-        }
-
+       
         public virtual void PerformLayout()
         {
 
         }
 
-        public virtual void Draw()
-        {
-            var window = GetWindow();
-            if (window != null)
-            {
-                window.GraphicsContext.DrawRect(Position.x, Position.y, Size.Width, Size.Height, ColorUtil.GetSfmlColor("#F5F5F5"), ColorUtil.GetSfmlColor("#00A8E4"), 1);
-                window.GraphicsContext.DrawText(Text, Position.x, Position.y);
-            }
-        }
+        //public virtual void Draw()
+        //{
+        //    var window = GetWindow();
+        //    if (window != null)
+        //    {
+        //        window.Theme.DrawControl(this);                
+        //    }
+        //}
         #endregion
 
         #region Private Methods
@@ -156,6 +142,27 @@ namespace NetCoreGui.Themes
 
         public event AppEventHandler OnResize;
         public event AppEventHandler OnRefresh;
+
+        internal void FireMouseMove(double xpos, double ypos)
+        {
+            OnMouseMove(this, new EventArg() { Data = new System.Drawing.Point((int)xpos, (int)ypos) });
+        }
+
+        internal void FireMouseClick(Window window, MouseButtonEventArgs e)
+        {
+            OnMouseClick(this, new EventArg() { Data = new { Button = e.Button, e.X, e.Y } });
+        }
+
+        internal void FireKeyDown(KeyEventArgs e)
+        {
+            OnKeyPresse(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
+        }
+
+        internal void FireKeyUp(KeyEventArgs e)
+        {
+            OnKeyRelease(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
+        }
+
         #endregion
     }
 

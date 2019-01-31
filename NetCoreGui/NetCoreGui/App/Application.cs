@@ -4,29 +4,34 @@ using System.Threading;
 
 using NetCoreGui.Themes;
 using NetCoreGui.Drivers;
-using NetCoreGui.Utility;
+using System.Diagnostics;
 
 namespace NetCoreGui.Utility
 {
     public class Application
     {
-        internal static IGraphicsDriver graphicsDriver;
+        internal IGraphicsDriver graphicsDriver;
+        public static Theme Theme { get; set; }
 
-        internal static IntPtr consoleHandle;
-        internal static int _lastZedIndex = 1;
+        internal IntPtr consoleHandle;
+        internal int _lastZedIndex = 1;
 
-        internal static bool _isInitilized = false;        
-        internal static bool _isRunning = true;
+        internal bool _isInitilized = false;        
+        internal bool _isRunning = true;
 
-        public static List<IWindow> Windows { get; set; }
+        public List<IWindow> Windows { get; set; }
         
-        public static void Init(IntPtr consoleHandle)
+        public static Application Create()
         {
-            Application.consoleHandle = consoleHandle;
-            graphicsDriver = new GraphicsDriver();
+            var app = new Application();
+            app.consoleHandle = Process.GetCurrentProcess().Handle;
+            app.graphicsDriver = new GraphicsDriver();
+            Theme = new DefaultTheme();
+
+            return app;
         }
 
-        public static void Run(IWindow window){
+        public void Run(IWindow window){
 
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Create(_lastZedIndex);
@@ -40,6 +45,12 @@ namespace NetCoreGui.Utility
                 nativeWindow.Display();
                 Thread.Sleep(1);
             }
+        }
+
+        public Application UseTheme(Type themeType)
+        {
+
+            return this;
         }
     }
 }
