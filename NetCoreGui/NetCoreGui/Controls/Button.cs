@@ -5,18 +5,15 @@ namespace NetCoreGui.Controls
 {
     public class Button : Control
     {
-        public Button(Control parent) : base(parent)
+        public Button()
         {
-
+            Size = Size = new Size(100, 30);            
         }
 
-        //public override void Draw()
-        //{
-        //    var window = GetWindow();
-        //    if (window != null)
-        //    {
-        //        Theme.DrawButton(this);                
-        //    }   
-        //}
+        public override Properties AfterGetProperties(ref Properties prop, Theme theme)
+        {
+            prop.ControlColor = ControlColor.IsDefault() ? theme.ButtonBackColor : ControlColor;            
+            return prop;
+        }
     }
 }

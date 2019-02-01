@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls.Layout
 {
     public class RowLayout : Control
     {
-        public RowLayout(Control parent) : base(parent)
+        public RowLayout()
         {
 
         }

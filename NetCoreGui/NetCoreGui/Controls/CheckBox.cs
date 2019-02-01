@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class CheckBox : Control
     {
-        public CheckBox(Control parent) : base(parent)
+        public CheckBox()
         {
 
         }

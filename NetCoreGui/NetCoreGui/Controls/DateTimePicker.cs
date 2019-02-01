@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class DateTimePicker : Control
     {
-        public DateTimePicker(Control parent) : base(parent)
+        public DateTimePicker() 
         {
 
         }

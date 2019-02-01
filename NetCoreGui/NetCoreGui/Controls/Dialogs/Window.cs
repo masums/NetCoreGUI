@@ -25,7 +25,7 @@ namespace NetCoreGui.Controls.Dialogs
         public WindowState State { get; set; }
         public Theme Theme { get; set; }
 
-        public Window(string title, Window parent = null, Point position = null) : base(null)
+        public Window(string title, Window parent = null, Point position = null)
         {
             _graphicsDriver = new GraphicsDriver();
 

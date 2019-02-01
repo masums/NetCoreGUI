@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls.Container
 {
     public class SplitPanel : Control
     {
-        public SplitPanel(Control parent) : base(parent)
+        public SplitPanel()
         {
 
         }

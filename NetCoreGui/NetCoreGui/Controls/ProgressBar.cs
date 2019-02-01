@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class ProgressBar : Control
     {
-        public ProgressBar(Control parent) : base(parent)
+        public ProgressBar()
         {
 
         }

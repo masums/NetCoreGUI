@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class ListView : Control
     {
-        public ListView(Control parent) : base(parent)
+        public ListView() 
         {
 
         }

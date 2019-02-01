@@ -40,11 +40,16 @@ namespace NetCoreGui.Themes
         Left, 
         Right ,
         Bottom,
-        Center,
         CenterVertical,
-        CenterHorizontal,
+        CenterHorizontal,       
+    }
+
+    public enum Positioning
+    {
+        Relative,
+        Fixed,
+        Absolute,
         Fill,
-        Absolute
     }
 
     public enum Orientation
@@ -59,7 +64,7 @@ namespace NetCoreGui.Themes
         Left, 
         Right ,
         Bottom,
-        Fill
+        All
     }
 
     public struct DefaultPadding

@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class Tab : Control
     {
-        public Tab(Control parent) : base(parent)
+        public Tab()
         {
 
         }
@@ -15,7 +15,7 @@ namespace NetCoreGui.Controls
 
     public class TabPage : Control
     {
-        public TabPage(Control parent) : base(parent)
+        public TabPage()
         {
 
         }

@@ -9,7 +9,7 @@ namespace NetCoreGui.Utility
     public static class WindowManager
     {
         private static Dictionary<IntPtr, AppWindow> _appWindows = new Dictionary<IntPtr, AppWindow>();
-        private volatile static Control _activeControl = new HiddenControl(null);
+        private volatile static Control _activeControl = new HiddenControl();
 
         public static void Add(IWindow window)
         {

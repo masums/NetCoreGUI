@@ -8,7 +8,7 @@ namespace NetCoreGui.Controls
 {
     public class TextBox : Control
     {
-        public TextBox(Control parent) : base(parent)
+        public TextBox()
         {
             OnKeyPresse += TextBox_OnKeyPresse;
         }
@@ -28,28 +28,13 @@ namespace NetCoreGui.Controls
             { 
                 Text += arg.Data.Code;
             }
-            //Draw();
+            
         }
 
-        //public override void Draw()
-        //{
-        //    try
-        //    {
-        //        var gcxt = GetGraphicsContext();
-
-        //        if (gcxt != null && _isDrawing == false)
-        //        {
-        //            _isDrawing = true;
-
-        //            Theme.DrawTextBox(this);
-
-        //            _isDrawing = false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine("Control:Drawing:", ex.Message);
-        //    }            
-        //}
+        public override Properties AfterGetProperties(ref Properties prop, Theme theme)
+        {
+            prop.BackColor = BackColor.IsDefault() ? theme.TextBoxBackColor : BackColor;
+            return prop;
+        }
     }
 }

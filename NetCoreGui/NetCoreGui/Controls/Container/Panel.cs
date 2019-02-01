@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls.Container
 {
     public class Panel : Control
     {
-        public Panel(Control parent) : base(parent)
+        public Panel()
         {
 
         }

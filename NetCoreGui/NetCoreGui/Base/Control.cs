@@ -1,10 +1,12 @@
 ﻿using NetCoreGui.Drivers;
 using NetCoreGui.Events;
 using NetCoreGui.Utility;
+using SFML.Graphics;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 
 namespace NetCoreGui.Themes
 {
@@ -18,13 +20,15 @@ namespace NetCoreGui.Themes
     public abstract class Control
     {
         internal IGraphicsContext _graphicsContext;
-        
+
         internal volatile object _lock = new object();
         internal volatile bool _isDrawing = false;
 
         internal Point _calclutedPosition;
         internal Size _calclutedSize;
         internal Point _position;
+        
+        private List<Control> _chields;
 
         #region Properties
         public string Id { get; set; }
@@ -32,36 +36,54 @@ namespace NetCoreGui.Themes
         public bool IsFocused { get; set; }
         public string Text { get; set; }
 
+        public Color BackColor { get; set; }
+        public Color ControlColor { get; set; }
+
+        public Color BorderColor { get; set; }
+        public Color TextColor { get; set; }
+
+        public Font Font { get; set; }
+        public float FontSize { get; set; }
+        public Text.Styles FontStyle { get; set; }
+
+
         public ControlVisibility Visibility { get; set; }
 
         public Size Size { get; set; }
 
         public Control Parent { get; set; }
-        public List<Control> Chields { get; set; }
-        
+
+        public List<Control> Chields
+        {
+            get {
+                foreach (var item in _chields)
+                {
+                    item.Parent = this;
+                }
+                return _chields;
+            }
+            set {                
+                _chields = value;
+            }
+        }
+
         public Point Position { get => _position; set => _position = value; }
 
         public List<Anchor> Anchors { get; set; }
         public Rect Padding { get; set; }
         public Rect Margin { get; set; }
         public Alignment Alignment { get; set; }
-        
+        public Positioning Positioning { get; set; }
         public Orientation Orientation { get; set; }
-        
+
         #endregion
 
         #region Public Methods
 
-        public Control(Control parent)
+        public Control()
         {
-            Chields = new List<Control>();
-            Anchors = new List<Anchor>();
-
-            Parent = parent;
-
-            Padding = new Rect(DefaultPadding.Top, DefaultPadding.Left, DefaultPadding.Right, DefaultPadding.Bottom);
-            Margin  = new Rect(DefaultMargin.Top, DefaultMargin.Left, DefaultMargin.Right, DefaultMargin.Bottom);
-
+            SetControlDefaults();
+            
             OnMouseClick += (object sender, EventArg arg) => { };
             OnMouseDoubleClick += (object sender, EventArg arg) => { };
             OnMouseMove += (object sender, EventArg arg) => { Debug.WriteLine($"Mouse Moved on {Id}"); };
@@ -73,6 +95,26 @@ namespace NetCoreGui.Themes
             OnResize += (object sender, EventArg arg) => { };
         }
 
+        private void SetControlDefaults()
+        {
+            Chields = new List<Control>();
+            Anchors = new List<Anchor>();
+
+            BackColor = default(Color);
+            ControlColor = default(Color);
+            TextColor = default(Color);
+            BorderColor = default(Color);
+
+            Font = null;
+            FontSize = 11;
+
+            Padding = new Rect(DefaultPadding.Top, DefaultPadding.Left, DefaultPadding.Right, DefaultPadding.Bottom);
+            Margin = new Rect(DefaultMargin.Top, DefaultMargin.Left, DefaultMargin.Right, DefaultMargin.Bottom);
+
+            Alignment = Alignment.Left;
+            Visibility = ControlVisibility.Visible;
+            Positioning = Positioning.Relative;
+        }
 
         public IGraphicsContext GetGraphicsContext()
         {
@@ -101,9 +143,9 @@ namespace NetCoreGui.Themes
             return (IWindow)this;
         }
 
-        public Point GetPosition()
+        public Point GetCalclutedPosition()
         {
-            if(Parent == null)
+            if (Parent == null || Positioning == Positioning.Absolute)
             {
                 return new Point(Position.x - Margin.Left, Position.y - Margin.Top);
             }
@@ -113,11 +155,41 @@ namespace NetCoreGui.Themes
             }
         }
 
-        public Size GetSize()
+        public Size GetCalclutedSize()
         {
-            return new Size( Size.Width - (Margin.Left + Margin.Right), Size.Height - (Margin.Top + Margin.Bottom) );
+            return new Size(Size.Width - (Margin.Left + Margin.Right), Size.Height - (Margin.Top + Margin.Bottom));
         }
-        
+
+        public virtual Properties GetProperties(Theme theme)
+        {
+            var prop = new Properties();
+
+            prop.Size = GetCalclutedSize();
+            prop.Position = GetCalclutedPosition();
+
+            prop.BackColor = BackColor.IsDefault() ? theme.BackColor : BackColor;
+            prop.BorderColor = BorderColor.IsDefault() ? theme.ControlBorderColor : BorderColor;
+            prop.TextColor = TextColor.IsDefault() ? theme.TextColor : TextColor;
+            prop.ControlColor = ControlColor.IsDefault() ? theme.ControlColor : ControlColor;
+
+            prop.Alignment = Alignment;
+            prop.Anchors = Anchors;
+            prop.Font = Font == null ? theme.Font : Font;
+            prop.Margin = Margin;
+            prop.Orientation = Orientation;
+            prop.Padding = Padding;
+            prop.Visibility = Visibility;
+
+            prop = AfterGetProperties(ref prop, theme);
+
+            return prop;
+        }
+
+        public virtual Properties AfterGetProperties(ref Properties prop, Theme theme)
+        {
+            return prop;
+        }
+
         public virtual void Add(Control chield)
         {
             chield.Parent = this;
@@ -129,20 +201,12 @@ namespace NetCoreGui.Themes
             chield.Parent = null;
             Chields.Remove(chield);
         }
-       
+
         public virtual void PerformLayout()
         {
 
         }
-
-        //public virtual void Draw()
-        //{
-        //    var window = GetWindow();
-        //    if (window != null)
-        //    {
-        //        window.Theme.DrawControl(this);                
-        //    }
-        //}
+        
         #endregion
 
         #region Private Methods
@@ -183,8 +247,27 @@ namespace NetCoreGui.Themes
         #endregion
     }
 
+    public struct Properties
+    {
+        public ControlVisibility Visibility { get; set; }
+        public Size Size { get; set; }
+        public Color BackColor { get; set; }
+        public Color BorderColor { get; set; }
+        public Color ControlColor { get; set; }        
+        public Color TextColor { get; set; }
+        public Font Font { get; set; }
+        public Point Position { get; set; }
+
+        public List<Anchor> Anchors { get; set; }
+        public Rect Padding { get; set; }
+        public Rect Margin { get; set; }
+        public Alignment Alignment { get; set; }
+
+        public Orientation Orientation { get; set; }
+    }
+
     public class HiddenControl : Control{
-        public HiddenControl(Control parent):base(parent)
+        public HiddenControl()
         {
             Visibility = ControlVisibility.Hidden;
         }

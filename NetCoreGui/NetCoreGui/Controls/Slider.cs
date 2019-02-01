@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class Slider : Control
     {
-        public Slider(Control parent) : base(parent)
+        public Slider()
         {
 
         }

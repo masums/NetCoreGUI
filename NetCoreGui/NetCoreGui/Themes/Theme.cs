@@ -38,35 +38,42 @@ namespace NetCoreGui.Themes
             TextBoxBackColor = Color.White;
             ButtonBackColor = ColorUtil.GetSfmlColor("#DED8CD");
 
+            Font = new Font("Resources/Fonts/Roboto/Roboto-Regular.ttf");
+
             ControlBorderWidth = 1;
         }
 
-        public virtual void DrawTextBox(TextBox textBox)
+        public virtual void DrawTextBox(TextBox control)
         {
-            GraphicsContext.DrawRect(textBox.Position.x, textBox.Position.y, textBox.Size.Width, textBox.Size.Height, TextBoxBackColor, ControlBorderColor, ControlBorderWidth);
-            GraphicsContext.DrawText(textBox.Text, textBox.Position.x + 10, textBox.Position.y + 6);
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, TextBoxBackColor, ControlBorderColor, ControlBorderWidth);
+            GraphicsContext.DrawText(control.Text, prop.Position.x + 10, prop.Position.y + 6);
         }
 
-        public virtual void DrawButton(Button button)
+        public virtual void DrawButton(Button control)
         {
-            GraphicsContext.DrawRect(button.Position.x, button.Position.y, button.Size.Width, button.Size.Height, ButtonBackColor, ControlBorderColor, ControlBorderWidth);
-            GraphicsContext.DrawText(button.Text, button.Position.x + 10, button.Position.y + 6);
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.ControlColor, prop.BorderColor, ControlBorderWidth);
+            GraphicsContext.DrawText(control.Text, prop.Position.x + 10, prop.Position.y + 6);
         }
 
         public virtual void DrawControl(Control control)
         {
-            GraphicsContext.DrawRect(control.Position.x, control.Position.y, control.Size.Width, control.Size.Height, ControlColor, ControlBorderColor, ControlBorderWidth);
-            GraphicsContext.DrawText(control.Text, control.Position.x, control.Position.y);
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.ControlColor, prop.BorderColor, ControlBorderWidth);
+            GraphicsContext.DrawText(control.Text, prop.Position.x, prop.Position.y);
         }
 
         internal void DrawLabel(Label control)
         {
-            GraphicsContext.DrawText(control.Text, control.Position.x, control.Position.y);
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawText(control.Text, prop.Position.x, prop.Position.y);
         }
 
         internal void DrawForm(Form control)
         {
-            GraphicsContext.DrawRect(control.Position.x, control.Position.y, control.Size.Width, control.Size.Height, BackColor);
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
         }
     }
 }

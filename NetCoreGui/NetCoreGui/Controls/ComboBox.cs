@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class ComboBox : Control
     {
-        public ComboBox(Control parent) : base(parent)
+        public ComboBox()
         {
 
         }

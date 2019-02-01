@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class Menu : Control
     {
-        public Menu(Control parent) : base(parent)
+        public Menu() 
         {
 
         }

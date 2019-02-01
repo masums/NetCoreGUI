@@ -7,7 +7,7 @@ namespace NetCoreGui.Controls
 {
     public class RadioButton : Control
     {
-        public RadioButton(Control parent) : base(parent)
+        public RadioButton() 
         {
 
         }

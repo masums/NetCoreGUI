@@ -4,7 +4,7 @@ namespace NetCoreGui.Controls
 {
     public class Label : Control
     {
-        public Label(Control parent) : base(parent)
+        public Label() 
         {
 
         }
