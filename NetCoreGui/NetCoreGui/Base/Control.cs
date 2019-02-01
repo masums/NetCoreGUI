@@ -179,6 +179,7 @@ namespace NetCoreGui.Themes
             prop.Orientation = Orientation;
             prop.Padding = Padding;
             prop.Visibility = Visibility;
+            prop.Positioning = Positioning;
 
             prop = AfterGetProperties(ref prop, theme);
 
@@ -264,6 +265,7 @@ namespace NetCoreGui.Themes
         public Alignment Alignment { get; set; }
 
         public Orientation Orientation { get; set; }
+        public Positioning Positioning { get; set; }
     }
 
     public class HiddenControl : Control{

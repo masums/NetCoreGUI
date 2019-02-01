@@ -79,6 +79,8 @@ namespace NetCoreGui.Controls.Dialogs
 
             foreach (var item in orderdControlList)
             {
+                bool isChieldsRendered = false;
+
                 switch (item)
                 {
                     case Button control:
@@ -95,6 +97,7 @@ namespace NetCoreGui.Controls.Dialogs
 
                     case Form control:
                         Theme.DrawForm(control);
+
                         break;
 
                     default:
@@ -102,7 +105,7 @@ namespace NetCoreGui.Controls.Dialogs
                         break;
                 }
 
-                if (item.Chields.Count > 0)
+                if (isChieldsRendered == false && item.Chields.Count > 0)
                 {
                     RenderControls(item.Chields);
                 }
