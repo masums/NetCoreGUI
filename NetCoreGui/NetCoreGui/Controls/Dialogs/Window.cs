@@ -21,7 +21,7 @@ namespace NetCoreGui.Controls.Dialogs
         public string Icon { get; set; }
         public bool IsModal { get; set; }
         
-        public IGraphicsContext GraphicsContext { get; set; }
+        //public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
         public Theme Theme { get; set; }
 
@@ -58,13 +58,14 @@ namespace NetCoreGui.Controls.Dialogs
         public void Create(int lastZedIndex)
         {
             ZedIndex = _currentZedIndex = lastZedIndex;
-            GraphicsContext = _graphicsDriver.CreateWindow(Title, Size);
+            Theme = (Theme)Activator.CreateInstance(Application.ThemeType);
+            _graphicsContext = _graphicsDriver.CreateWindow(Title, Size);
 
-            NativeHandle = GraphicsContext.NativeWindowHandle; 
+            NativeHandle = _graphicsContext.NativeWindowHandle; 
+            Theme.GraphicsContext = _graphicsContext;
             
             WindowManager.Add(this);
-            EventManager.RegisterEvents(GraphicsContext.Window);
-            Theme = Application.Theme;
+            EventManager.RegisterEvents(_graphicsContext.Window);            
         } 
 
         public void DrawControls()

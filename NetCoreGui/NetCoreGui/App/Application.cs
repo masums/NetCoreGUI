@@ -5,13 +5,14 @@ using System.Threading;
 using NetCoreGui.Themes;
 using NetCoreGui.Drivers;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NetCoreGui.Utility
 {
     public class Application
     {
         internal IGraphicsDriver graphicsDriver;
-        public static Theme Theme { get; set; }
+        public static Type ThemeType { get; set; }
 
         internal IntPtr consoleHandle;
         internal int _lastZedIndex = 1;
@@ -26,7 +27,7 @@ namespace NetCoreGui.Utility
             var app = new Application();
             app.consoleHandle = Process.GetCurrentProcess().Handle;
             app.graphicsDriver = new GraphicsDriver();
-            Theme = new DefaultTheme();
+            ThemeType = typeof(DefaultTheme);
 
             return app;
         }
@@ -35,13 +36,19 @@ namespace NetCoreGui.Utility
 
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Create(_lastZedIndex);
-            var nativeWindow = window.GraphicsContext.Window;
+            var nativeWindow = window.Theme.GraphicsContext.Window;
 
             while (nativeWindow.IsOpen)
             {
-                nativeWindow.Clear(ColorUtil.GetSfmlColor("#F5F5F5"));
+                nativeWindow.Clear(window.Theme.BackColor);
                 nativeWindow.DispatchEvents();
-                window.DrawControls();
+
+                var windows = WindowManager.GetWindows().Where(x => x.State != WindowState.Minimized).ToList();
+                foreach (var item in windows)
+                {
+                    item.DrawControls();
+                }
+
                 nativeWindow.Display();
                 Thread.Sleep(1);
             }
@@ -49,7 +56,7 @@ namespace NetCoreGui.Utility
 
         public Application UseTheme(Type themeType)
         {
-
+            ThemeType = themeType;
             return this;
         }
     }

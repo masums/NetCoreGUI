@@ -2,6 +2,7 @@
 using SFML.Window;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NetCoreGui.Utility
 {
@@ -23,6 +24,11 @@ namespace NetCoreGui.Utility
                 return appWindow.Window;
             }
             return null;
+        }
+
+        public static List<IWindow> GetWindows()
+        {
+            return _appWindows.Values.Select(x=>x.Window).ToList();
         }
 
         internal static void FireMouseClick(Window window, MouseButtonEventArgs e)

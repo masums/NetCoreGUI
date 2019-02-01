@@ -32,7 +32,7 @@ namespace NetCoreGui.Themes
         
         WindowState State { get; set; }
              
-        IGraphicsContext GraphicsContext { get; set; }
+        //IGraphicsContext GraphicsContext { get; set; }
 
         List<Control> Chields { get; set; }
 

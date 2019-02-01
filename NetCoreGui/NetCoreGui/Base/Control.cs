@@ -79,7 +79,7 @@ namespace NetCoreGui.Themes
             if (_graphicsContext == null)
             {
                 var window = GetWindow();
-                _graphicsContext = window.GraphicsContext;
+                _graphicsContext = window.Theme.GraphicsContext;
             }
             return _graphicsContext;
         }
@@ -99,6 +99,23 @@ namespace NetCoreGui.Themes
             }
 
             return (IWindow)this;
+        }
+
+        public Point GetPosition()
+        {
+            if(Parent == null)
+            {
+                return new Point(Position.x - Margin.Left, Position.y - Margin.Top);
+            }
+            else
+            {
+                return new Point(Parent.Position.x + Position.x - Margin.Left, Parent.Position.y + Position.y - Margin.Top);
+            }
+        }
+
+        public Size GetSize()
+        {
+            return new Size( Size.Width - (Margin.Left + Margin.Right), Size.Height - (Margin.Top + Margin.Bottom) );
         }
         
         public virtual void Add(Control chield)
