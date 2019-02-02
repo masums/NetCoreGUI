@@ -6,6 +6,8 @@ using System;
 using SFML.Window;
 using System.Linq;
 using System.Collections.Generic;
+using NetCoreGui.Base;
+using NetCoreGui.Drawing;
 
 namespace NetCoreGui.Controls.Dialogs
 {

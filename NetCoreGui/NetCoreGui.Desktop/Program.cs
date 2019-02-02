@@ -7,6 +7,8 @@ using System.Diagnostics;
 using NetCoreGui.Utility;
 using System.Collections.Generic;
 using SFML.Graphics;
+using NetCoreGui.Drawing;
+using NetCoreGui.Base;
 
 namespace NetCoreGui.Desktop
 {

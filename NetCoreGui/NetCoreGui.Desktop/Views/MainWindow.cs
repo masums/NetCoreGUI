@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NetCoreGui.Controls.Dialogs;
+using NetCoreGui.Drawing;
 
 namespace NetCoreGui.Desktop.Views
 {

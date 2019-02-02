@@ -1,4 +1,5 @@
 ﻿using System;
+using NetCoreGui.Base;
 using NetCoreGui.Controls;
 using NetCoreGui.Drivers;
 using NetCoreGui.Utility;

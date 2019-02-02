@@ -1,5 +1,7 @@
-﻿using NetCoreGui.Drivers;
+﻿using NetCoreGui.Drawing;
+using NetCoreGui.Drivers;
 using NetCoreGui.Events;
+using NetCoreGui.Themes;
 using NetCoreGui.Utility;
 using SFML.Graphics;
 using SFML.Window;
@@ -8,7 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 
-namespace NetCoreGui.Themes
+namespace NetCoreGui.Base
 {
     public enum ControlVisibility
     {

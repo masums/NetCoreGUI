@@ -1,4 +1,5 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Base;
+using NetCoreGui.Themes;
 
 namespace NetCoreGui.Controls
 {

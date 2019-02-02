@@ -1,4 +1,5 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Base;
+using NetCoreGui.Themes;
 using NetCoreGui.Utility;
 using SFML.Window;
 using System;

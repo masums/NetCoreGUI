@@ -1,4 +1,6 @@
-﻿using NetCoreGui.Themes;
+﻿using NetCoreGui.Base;
+using NetCoreGui.Drawing;
+using NetCoreGui.Themes;
 using System;
 
 namespace NetCoreGui.Drivers

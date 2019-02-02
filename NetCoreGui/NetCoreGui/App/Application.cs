@@ -6,6 +6,7 @@ using NetCoreGui.Themes;
 using NetCoreGui.Drivers;
 using System.Diagnostics;
 using System.Linq;
+using NetCoreGui.Base;
 
 namespace NetCoreGui.Utility
 {
