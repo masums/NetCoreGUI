@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NetCoreGui.Base;
 using NetCoreGui.Controls;
+using NetCoreGui.Controls.Layout;
+using NetCoreGui.Drawing;
 using NetCoreGui.Drivers;
 using NetCoreGui.Utility;
 using SFML.Graphics;
@@ -44,6 +48,8 @@ namespace NetCoreGui.Themes
             ControlBorderWidth = 1;
         }
 
+        #region Control Drawing Functions
+
         public virtual void DrawTextBox(TextBox control)
         {
             Properties prop = control.GetProperties(this);
@@ -64,17 +70,110 @@ namespace NetCoreGui.Themes
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.ControlColor, prop.BorderColor, ControlBorderWidth);
             GraphicsContext.DrawText(control.Text, prop.Position.x, prop.Position.y);
         }
-
-        internal void DrawLabel(Label control)
+               
+        public virtual void DrawLabel(Label control)
         {
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawText(control.Text, prop.Position.x, prop.Position.y);
         }
 
-        internal void DrawForm(Form control)
+        public virtual void DrawForm(Form control)
         {
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
         }
+
+        public virtual void DrawColumnLayout(ColumnLayout control)
+        {
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
+
+            Dictionary<int, List<Control>> columns = new Dictionary<int, List<Control>>();
+            
+            int totalHeight = 0;
+            int column = 1;
+            
+            foreach (var item in control.Chields)
+            {
+                totalHeight += item.Size.Height;
+                
+                if(totalHeight >= prop.Size.Height)
+                {
+                    totalHeight = item.Size.Height;
+                    column++;
+                }
+
+                if(columns.Keys.Contains(column) == false)
+                {
+                    columns.Add(column, new List<Control>());
+                }                
+                columns[column].Add(item);
+            }
+
+            var colX = prop.Padding.Left;
+            
+            foreach (var item in columns)
+            {
+                var colControls = item.Value;
+                var lastY = control.Padding.Top;
+
+                foreach (var cc in colControls)
+                {
+                    cc.Position.x = colX;
+                    cc.Position.y = lastY;
+                    lastY += cc.Size.Height;
+                }
+
+                colX += colControls.Max(x => x.Size.Width);
+            }
+
+            RenderControls(control.Chields);
+        }
+
+        #endregion
+
+        public virtual void RenderControls(List<Control> chields)
+        {
+            var orderdControlList = chields.OrderBy(x => x.ZedIndex).ToList();
+
+            foreach (var item in orderdControlList)
+            {
+                bool isChieldsRendered = false;
+
+                switch (item)
+                {
+                    case Button control:
+                        DrawButton(control);
+                        break;
+
+                    case TextBox control:
+                        DrawTextBox(control);
+                        break;
+
+                    case Label control:
+                        DrawLabel(control);
+                        break;
+
+                    case Form control:
+                        DrawForm(control);
+                        break;
+
+                    case ColumnLayout control:
+                        DrawColumnLayout(control);
+                        isChieldsRendered = true;
+                        break;
+
+                    default:
+                        DrawControl(item);
+                        break;
+                }
+
+                if (isChieldsRendered == false && item.Chields.Count > 0)
+                {
+                    RenderControls(item.Chields);
+                }
+            }
+        } 
+
     }
 }

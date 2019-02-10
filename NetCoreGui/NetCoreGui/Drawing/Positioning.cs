@@ -49,7 +49,7 @@ namespace NetCoreGui.Drawing
         Relative,
         Fixed,
         Absolute,
-        Fill,
+        FillParent,
     }
 
     public enum Orientation

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using NetCoreGui.Base;
 using NetCoreGui.Drawing;
+using NetCoreGui.Controls.Layout;
 
 namespace NetCoreGui.Controls.Dialogs
 {
@@ -37,20 +38,22 @@ namespace NetCoreGui.Controls.Dialogs
             
             if (position == null)
             {
-                SetDefaultSizeAndPosition();
+                //SetDefaultSizeAndPosition();
+                Position = new Point(0, 0);
+                Size = new Size(600, 600);
             }
 
             State = WindowState.Active;
         }
         
-        private void SetDefaultSizeAndPosition()
-        {
-            var videoMode = VideoMode.DesktopMode;
-            var y = (int) videoMode.Height / 4;
-            var x = (int) videoMode.Width / 4;
-            Position = new Point(x, y);
-            Size = new Size(x + 400, y + 400);
-        }
+        //private void SetDefaultSizeAndPosition()
+        //{
+        //    var videoMode = VideoMode.DesktopMode;
+        //    var y = (int) videoMode.Height / 4;
+        //    var x = (int) videoMode.Width / 4;
+        //    Position = new Point(x, y);
+        //    Size = new Size(x + 400, y + 400);
+        //}
 
         internal void Show()
         {
@@ -72,46 +75,7 @@ namespace NetCoreGui.Controls.Dialogs
 
         public void DrawControls()
         {
-            RenderControls(Chields);
-        }
-
-        private void RenderControls(List<Control> chields)
-        {
-            var orderdControlList = chields.OrderBy(x => x.ZedIndex).ToList();
-
-            foreach (var item in orderdControlList)
-            {
-                bool isChieldsRendered = false;
-
-                switch (item)
-                {
-                    case Button control:
-                        Theme.DrawButton(control);
-                        break;
-
-                    case TextBox control:
-                        Theme.DrawTextBox(control);
-                        break;
-
-                    case Label control:
-                        Theme.DrawLabel(control);
-                        break;
-
-                    case Form control:
-                        Theme.DrawForm(control);
-
-                        break;
-
-                    default:
-                        Theme.DrawControl(item);
-                        break;
-                }
-
-                if (isChieldsRendered == false && item.Chields.Count > 0)
-                {
-                    RenderControls(item.Chields);
-                }
-            }
+            Theme.RenderControls(Chields);
         }
     }
 }

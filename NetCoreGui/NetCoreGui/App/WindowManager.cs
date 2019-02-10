@@ -1,5 +1,4 @@
 ﻿using NetCoreGui.Base;
-using NetCoreGui.Themes;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
@@ -54,7 +53,7 @@ namespace NetCoreGui.Utility
                 var aw = _appWindows[window.SystemHandle];
                 foreach (var item in aw.Window.Chields)
                 {
-                    var ctrl = FindControl(item, xpos, ypos);
+                    var ctrl = FindControls(item, xpos, ypos);
                     if (ctrl != null)
                     {
                         ctrl.IsFocused = true;
@@ -66,16 +65,28 @@ namespace NetCoreGui.Utility
             return null;
         }
 
-        private static Control FindControl(Control control, double xpos, double ypos)
+        private static Control FindControls(Control control, double xpos, double ypos)
         {
             foreach (var item in control.Chields)
             {
-                if (Geometry.IsInsideRect(item.Position.x, item.Position.y, item.Position.x + item.Size.Width, item.Position.y+item.Size.Height, xpos, ypos))
-                {
-                    return item;
-                }
-                var ctrl = FindControl(item, xpos, ypos);
-                if(ctrl != null) { return ctrl; }
+                var ctrl = FindControls(item, xpos, ypos);
+                if (ctrl != null) { return ctrl; }
+
+                ctrl = FindControl(item, xpos, ypos);
+                if (ctrl != null) { return ctrl; }
+            }
+
+            return FindControl(control, xpos, ypos);
+        }
+
+        private static Control FindControl(Control item, double xpos, double ypos)
+        {
+            var pos = item.GetCalclutedPosition();
+            var size = item.GetCalclutedSize();
+
+            if (Geometry.IsInsideRect(pos.x, pos.y, pos.x + size.Width, pos.y + size.Height, xpos, ypos))
+            {
+                return item;
             }
             return null;
         }
