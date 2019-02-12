@@ -117,7 +117,8 @@ namespace NetCoreGui.Base
             Visibility = ControlVisibility.Visible;
             Positioning = Positioning.Relative;
 
-            Size = new Size(200, 200);
+            Size = new Size(100, 30);
+            Position = new Point(0, 0);
         }
 
         public IGraphicsContext GetGraphicsContext()

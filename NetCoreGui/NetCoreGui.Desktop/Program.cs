@@ -18,8 +18,7 @@ namespace NetCoreGui.Desktop
         static void Main(string[] args)
         {
             Console.WriteLine("Hello GUI World!, Let's core, let's cross");
-            var gd = new GraphicsDriver();
-      
+           
             var window = new Window( Info.LibraryName + " v" + Info.Version );
             var form = new Form()
             {
@@ -38,13 +37,13 @@ namespace NetCoreGui.Desktop
                 Position = new Point(30,150),
                 BackColor = Color.Blue,
                 Chields = new List<Control>() {
-                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2"},
-                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3"},
-                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4"},
-                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5"},
-                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6"},
-                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7"},
-                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8"}, 
+                    new Button(){ Id="btn2", Text = "Button 2"},
+                    new Button(){ Id="btn3", Text = "Button 3"},
+                    new Button(){ Id="btn4", Text = "Button 4"},
+                    new Button(){ Id="btn5", Text = "Button 5"},
+                    new Button(){ Id="btn6", Text = "Button 6"},
+                    new Button(){ Id="btn7", Text = "Button 7"},
+                    new Button(){ Id="btn8", Text = "Button 8"}, 
                 }
             });
 
@@ -55,13 +54,13 @@ namespace NetCoreGui.Desktop
                 Position = new Point(30, 350),
                 BackColor = Color.Magenta,
                 Chields = new List<Control>() {
-                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2"},
-                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3"},
-                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4"},
-                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5"},
-                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6"},
-                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7"},
-                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8"},
+                    new Button(){ Id="btn2", Text = "Button 2"},
+                    new Button(){ Id="btn3", Text = "Button 3"},
+                    new Button(){ Id="btn4", Text = "Button 4"},
+                    new Button(){ Id="btn5", Text = "Button 5"},
+                    new Button(){ Id="btn6", Text = "Button 6"},
+                    new Button(){ Id="btn7", Text = "Button 7"},
+                    new Button(){ Id="btn8", Text = "Button 8"},
                 }
             });
 
