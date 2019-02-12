@@ -10,14 +10,6 @@ namespace NetCoreGui.Controls.Layout
         public ColumnLayout()
         {
             Size = new Size(200, 200);
-        }
-
-        /*
-        public override Properties AfterGetProperties(ref Properties prop, Theme theme)
-        {
-            prop.BackColor = Color.Transparent;
-            return prop;
-        }
-        */
+        } 
     }
 }

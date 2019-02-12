@@ -1,4 +1,5 @@
 ﻿using NetCoreGui.Base;
+using NetCoreGui.Drawing;
 using NetCoreGui.Themes;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace NetCoreGui.Controls.Layout
     {
         public RowLayout()
         {
-
+            Size = new Size(300, 200);
         }
     }
 }

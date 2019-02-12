@@ -130,6 +130,53 @@ namespace NetCoreGui.Themes
             RenderControls(control.Chields);
         }
 
+        public virtual void DrawRowLayout(RowLayout control)
+        {
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
+
+            Dictionary<int, List<Control>> rows = new Dictionary<int, List<Control>>();
+
+            int totalWidth = 0;
+            int row = 1;
+
+            foreach (var item in control.Chields)
+            {
+                totalWidth += item.Size.Width;
+
+                if (totalWidth >= prop.Size.Width)
+                {
+                    totalWidth = item.Size.Width;
+                    row++;
+                }
+
+                if (rows.Keys.Contains(row) == false)
+                {
+                    rows.Add(row, new List<Control>());
+                }
+                rows[row].Add(item);
+            }
+
+            var colY = prop.Padding.Left;
+
+            foreach (var item in rows)
+            {
+                var colControls = item.Value;
+                var lastX = control.Padding.Left;
+
+                foreach (var cc in colControls)
+                {
+                    cc.Position.x = lastX;
+                    cc.Position.y = colY;
+                    lastX += cc.Size.Width;
+                }
+
+                colY += colControls.Max(x => x.Size.Height);
+            }
+
+            RenderControls(control.Chields);
+        }
+
         #endregion
 
         public virtual void RenderControls(List<Control> chields)
@@ -160,6 +207,10 @@ namespace NetCoreGui.Themes
 
                     case ColumnLayout control:
                         DrawColumnLayout(control);
+                        isChieldsRendered = true;
+                        break;
+                    case RowLayout control:
+                        DrawRowLayout(control);
                         isChieldsRendered = true;
                         break;
 

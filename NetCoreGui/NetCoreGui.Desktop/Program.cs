@@ -48,7 +48,23 @@ namespace NetCoreGui.Desktop
                     new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8", ControlColor = Color.Green}, 
                 }
             });
-            
+
+            form.Add(new RowLayout()
+            {
+                Id = "rowLayoutTest",
+                Size = new Size(550, 100),
+                Position = new Point(30, 300),
+                BackColor = Color.Magenta,
+                Chields = new List<Control>() {
+                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2", ControlColor = Color.Green},
+                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3", ControlColor = Color.Green},
+                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4", ControlColor = Color.Green},
+                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5", ControlColor = Color.Green},
+                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6", ControlColor = Color.Green},
+                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7", ControlColor = Color.Green},
+                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8", ControlColor = Color.Green},
+                }
+            });
 
             window.Add(form);
             Application.Create().Run(window);
