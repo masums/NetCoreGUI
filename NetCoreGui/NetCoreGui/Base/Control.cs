@@ -116,6 +116,8 @@ namespace NetCoreGui.Base
             Alignment = Alignment.Left;
             Visibility = ControlVisibility.Visible;
             Positioning = Positioning.Relative;
+
+            Size = new Size(200, 200);
         }
 
         public IGraphicsContext GetGraphicsContext()

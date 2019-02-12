@@ -31,21 +31,20 @@ namespace NetCoreGui.Desktop
             form.Add(new Button() { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100,30), Position = new Point(30,30)});
             form.Add(new Label()  { Id = "nameLbl",    Text = "Enter your name", Size = new Size(100, 20), Position = new Point(30, 70) });
             form.Add(new TextBox(){ Id = "inputTxt",   Text = "Edit Text", Size = new Size(200,30), Position = new Point(30,100) });
-
-             
+            
             form.Add(new ColumnLayout() {
                 Id = "columnLayoutTest",
-                Size = new Size(400,100),
+                Size = new Size(300,200),
                 Position = new Point(30,150),
                 BackColor = Color.Blue,
                 Chields = new List<Control>() {
-                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2", ControlColor = Color.Green},
-                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3", ControlColor = Color.Green},
-                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4", ControlColor = Color.Green},
-                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5", ControlColor = Color.Green},
-                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6", ControlColor = Color.Green},
-                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7", ControlColor = Color.Green},
-                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8", ControlColor = Color.Green}, 
+                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2"},
+                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3"},
+                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4"},
+                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5"},
+                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6"},
+                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7"},
+                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8"}, 
                 }
             });
 
@@ -53,16 +52,16 @@ namespace NetCoreGui.Desktop
             {
                 Id = "rowLayoutTest",
                 Size = new Size(550, 100),
-                Position = new Point(30, 300),
+                Position = new Point(30, 350),
                 BackColor = Color.Magenta,
                 Chields = new List<Control>() {
-                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2", ControlColor = Color.Green},
-                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3", ControlColor = Color.Green},
-                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4", ControlColor = Color.Green},
-                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5", ControlColor = Color.Green},
-                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6", ControlColor = Color.Green},
-                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7", ControlColor = Color.Green},
-                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8", ControlColor = Color.Green},
+                    new Button(){ Id="btn2", Position = new Point(10,10), Text = "Button 2"},
+                    new Button(){ Id="btn3", Position = new Point(10,10), Text = "Button 3"},
+                    new Button(){ Id="btn4", Position = new Point(10,10), Text = "Button 4"},
+                    new Button(){ Id="btn5", Position = new Point(10,10), Text = "Button 5"},
+                    new Button(){ Id="btn6", Position = new Point(10,10), Text = "Button 6"},
+                    new Button(){ Id="btn7", Position = new Point(10,10), Text = "Button 7"},
+                    new Button(){ Id="btn8", Position = new Point(10,10), Text = "Button 8"},
                 }
             });
 

@@ -28,7 +28,7 @@ namespace NetCoreGui.Controls.Dialogs
         public WindowState State { get; set; }
         public Theme Theme { get; set; }
 
-        public Window(string title, Window parent = null, Point position = null)
+        public Window(string title, Window parent = null, Size size = null, Point position = null)
         {
             _graphicsDriver = new GraphicsDriver();
 
@@ -40,7 +40,11 @@ namespace NetCoreGui.Controls.Dialogs
             {
                 //SetDefaultSizeAndPosition();
                 Position = new Point(0, 0);
-                Size = new Size(600, 600);
+            }
+
+            if(size == null)
+            {
+                Size = new Size(800, 600);
             }
 
             State = WindowState.Active;

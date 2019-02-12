@@ -8,7 +8,7 @@ namespace NetCoreGui.Controls.Dialogs
 {
     public class MessageBox : Window
     {
-        public MessageBox(string title, Window parent = null, Point position = null) : base(title, parent, position)
+        public MessageBox(string title, Window parent = null, Size size = null, Point position = null) : base(title, parent, size, position)
         {
         }
     }
