@@ -52,6 +52,8 @@ namespace NetCoreGui.Base
         public ControlVisibility Visibility { get; set; }
 
         public Size Size { get; set; }
+        public Size MinSize { get; set; }
+        public Size MaxSize { get; set; }
 
         public Control Parent { get; set; }
 
