@@ -8,28 +8,17 @@ namespace NetCoreGui.Controls.Layout
 {
     public class GridLayout : Control
     {
-        public List<GridRow> Rows { get; set; }
-        public GridLayout()
-        {
-            Rows = new List<GridRow>();
-
-        }
+        
     }
 
-    public class GridRow
+    public class GridRow : Control
     {
-        public List<GridCol> Cols { get; set; }
-        public GridRow() { Cols = new List<GridCol>(); }
+
     }
 
-    public class GridCol
+    public class GridCol : Control
     {
-        public GridColSize Size { get; set; }
-        List<Control> Controls { get; set; }
-        public GridCol()
-        {
-            Controls = new List<Control>();
-        }
+        public GridColSize ColSize { get; set; }
     }
 
     public enum GridColSize

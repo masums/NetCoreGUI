@@ -83,7 +83,7 @@ namespace NetCoreGui.Themes
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
         }
 
-        public virtual void DrawColumnLayout(ColumnLayout control)
+        public virtual bool DrawColumnLayout(ColumnLayout control)
         {
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
@@ -128,9 +128,10 @@ namespace NetCoreGui.Themes
             }
 
             RenderControls(control.Chields);
+            return true;
         }
 
-        public virtual void DrawRowLayout(RowLayout control)
+        public virtual bool DrawRowLayout(RowLayout control)
         {
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
@@ -175,8 +176,56 @@ namespace NetCoreGui.Themes
             }
 
             RenderControls(control.Chields);
+            return true;
         }
 
+        private bool DrawGridLayout(GridLayout control)
+        {
+            Properties prop = control.GetProperties(this);
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
+
+            Dictionary<int, List<Control>> rows = new Dictionary<int, List<Control>>();
+
+            int totalWidth = 0;
+            int row = 1;
+
+            foreach (var item in control.Chields)
+            {
+                totalWidth += item.Size.Width;
+
+                if (totalWidth >= prop.Size.Width)
+                {
+                    totalWidth = item.Size.Width;
+                    row++;
+                }
+
+                if (rows.Keys.Contains(row) == false)
+                {
+                    rows.Add(row, new List<Control>());
+                }
+                rows[row].Add(item);
+            }
+
+            var colY = prop.Padding.Left;
+
+            foreach (var item in rows)
+            {
+                var colControls = item.Value;
+                var lastX = control.Padding.Left;
+
+                foreach (var cc in colControls)
+                {
+                    cc.Position.x = lastX;
+                    cc.Position.y = colY;
+                    lastX += cc.Size.Width;
+                }
+
+                colY += colControls.Max(x => x.Size.Height);
+            }
+
+            RenderControls(control.Chields);
+            return true;
+        }
         #endregion
 
         public virtual void RenderControls(List<Control> chields)
@@ -206,14 +255,14 @@ namespace NetCoreGui.Themes
                         break;
 
                     case ColumnLayout control:
-                        DrawColumnLayout(control);
-                        isChieldsRendered = true;
+                        isChieldsRendered = DrawColumnLayout(control);                        
                         break;
                     case RowLayout control:
-                        DrawRowLayout(control);
-                        isChieldsRendered = true;
+                        isChieldsRendered = DrawRowLayout(control);                        
                         break;
-
+                    case GridLayout control:
+                        isChieldsRendered = DrawGridLayout(control);
+                        break;
                     default:
                         DrawControl(item);
                         break;
@@ -225,6 +274,5 @@ namespace NetCoreGui.Themes
                 }
             }
         } 
-
     }
 }
