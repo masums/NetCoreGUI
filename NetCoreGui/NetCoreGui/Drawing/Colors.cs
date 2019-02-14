@@ -77,9 +77,7 @@ namespace NetCoreGui.Drawing
             public static Color L800 = ColorUtil.GetSfmlColor("#283593");
             public static Color L900 = ColorUtil.GetSfmlColor("#1A237E");
         }
-
-
-
+        
         public class BLUE
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E3F2FD");
@@ -275,5 +273,106 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#263238");
         }
 
+        public class Palette
+        {
+            public class Armor_Falls
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#bfd6f6");
+                public static Color _2 = ColorUtil.GetSfmlColor("#8dbdff");
+                public static Color _3 = ColorUtil.GetSfmlColor("#64a1f4");
+                public static Color _4 = ColorUtil.GetSfmlColor("#4a91f2");
+                public static Color _5 = ColorUtil.GetSfmlColor("#3b7dd8");
+            }
+
+            public class Space_Gray
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#343d46");
+                public static Color _2 = ColorUtil.GetSfmlColor("#4f5b66");
+                public static Color _3 = ColorUtil.GetSfmlColor("#65737e");
+                public static Color _4 = ColorUtil.GetSfmlColor("#a7adba");
+                public static Color _5 = ColorUtil.GetSfmlColor("#c0c5ce");
+            }
+
+            public class Skin_Tones
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#8d5524");
+                public static Color _2 = ColorUtil.GetSfmlColor("#c68642");
+                public static Color _3 = ColorUtil.GetSfmlColor("#e0ac69");
+                public static Color _4 = ColorUtil.GetSfmlColor("#f1c27d");
+                public static Color _5 = ColorUtil.GetSfmlColor("#ffdbac");
+            }
+
+            public class Purple_Skyline
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#2e003e");
+                public static Color _2 = ColorUtil.GetSfmlColor("#3d2352");
+                public static Color _3 = ColorUtil.GetSfmlColor("#3d1e6d");
+                public static Color _4 = ColorUtil.GetSfmlColor("#8874a3");
+                public static Color _5 = ColorUtil.GetSfmlColor("#e4dcf1");
+            }
+
+            public class Office_Room
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#84c1ff");
+                public static Color _2 = ColorUtil.GetSfmlColor("#add6ff");
+                public static Color _3 = ColorUtil.GetSfmlColor("#d6eaff");
+                public static Color _4 = ColorUtil.GetSfmlColor("#eaf4ff");
+                public static Color _5 = ColorUtil.GetSfmlColor("#f8fbff");
+            }
+
+            public class Program_Catalog
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#edc951");
+                public static Color _2 = ColorUtil.GetSfmlColor("#eb6841");
+                public static Color _3 = ColorUtil.GetSfmlColor("#cc2a36");
+                public static Color _4 = ColorUtil.GetSfmlColor("#4f372d");
+                public static Color _5 = ColorUtil.GetSfmlColor("#00a0b0");
+            }
+
+            public class Never_Doubt
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#eeeeee");
+                public static Color _2 = ColorUtil.GetSfmlColor("#dddddd");
+                public static Color _3 = ColorUtil.GetSfmlColor("#cccccc");
+                public static Color _4 = ColorUtil.GetSfmlColor("#bbbbbb");
+                public static Color _5 = ColorUtil.GetSfmlColor("#29a8ab");
+            }
+
+            public class Greyso
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#6f7c85");
+                public static Color _2 = ColorUtil.GetSfmlColor("#75838d");
+                public static Color _3 = ColorUtil.GetSfmlColor("#7e8d98");
+                public static Color _4 = ColorUtil.GetSfmlColor("#8595a1");
+                public static Color _5 = ColorUtil.GetSfmlColor("#8c9da9");
+            }
+
+            public class Metro_UI
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#d11141");
+                public static Color _2 = ColorUtil.GetSfmlColor("#00b159");
+                public static Color _3 = ColorUtil.GetSfmlColor("#00aedb");
+                public static Color _4 = ColorUtil.GetSfmlColor("#f37735");
+                public static Color _5 = ColorUtil.GetSfmlColor("#ffc425");
+            }
+
+            public class Pastel_Rainbow
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#a8e6cf");
+                public static Color _2 = ColorUtil.GetSfmlColor("#dcedc1");
+                public static Color _3 = ColorUtil.GetSfmlColor("#ffd3b6");
+                public static Color _4 = ColorUtil.GetSfmlColor("#ffaaa5");
+                public static Color _5 = ColorUtil.GetSfmlColor("#ff8b94");
+            }
+
+            public class Rainbow_Dash
+            {
+                public static Color _1 = ColorUtil.GetSfmlColor("#ee4035");
+                public static Color _2 = ColorUtil.GetSfmlColor("#f37736");
+                public static Color _3 = ColorUtil.GetSfmlColor("#fdf498");
+                public static Color _4 = ColorUtil.GetSfmlColor("#7bc043");
+                public static Color _5 = ColorUtil.GetSfmlColor("#0392cf");
+            }
+        }
     }
 }
