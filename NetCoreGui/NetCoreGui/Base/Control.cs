@@ -104,10 +104,10 @@ namespace NetCoreGui.Base
             Chields = new List<Control>();
             Anchors = new List<Anchor>();
 
-            BackColor = default(Color);
-            ControlColor = default(Color);
-            TextColor = default(Color);
-            BorderColor = default(Color);
+            BackColor = Colors.Default;
+            ControlColor = Colors.Default;
+            TextColor = Colors.Default;
+            BorderColor = Colors.Default;
 
             Font = null;
             FontSize = 11;
@@ -174,10 +174,10 @@ namespace NetCoreGui.Base
             prop.Size = GetCalclutedSize();
             prop.Position = GetCalclutedPosition();
 
-            prop.BackColor = BackColor.IsDefault() ? theme.BackColor : BackColor;
-            prop.BorderColor = BorderColor.IsDefault() ? theme.ControlBorderColor : BorderColor;
-            prop.TextColor = TextColor.IsDefault() ? theme.TextColor : TextColor;
-            prop.ControlColor = ControlColor.IsDefault() ? theme.ControlColor : ControlColor;
+            prop.BackColor = BackColor == Colors.Default ? theme.BackColor : BackColor;
+            prop.BorderColor = BorderColor == Colors.Default ? theme.ControlBorderColor : BorderColor;
+            prop.TextColor = TextColor == Colors.Default ? theme.TextColor : TextColor;
+            prop.ControlColor = ControlColor == Colors.Default ? theme.ControlColor : ControlColor;
 
             prop.Alignment = Alignment;
             prop.Anchors = Anchors;

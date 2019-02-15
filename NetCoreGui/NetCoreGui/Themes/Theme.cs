@@ -189,8 +189,6 @@ namespace NetCoreGui.Themes
 
             foreach (var row in control.Chields)
             {
-                Dictionary<int, List<Control>> cols = new Dictionary<int, List<Control>>();
-                
                 row.Position.x = controlX;
                 row.Position.y = controlY;
 
@@ -209,12 +207,6 @@ namespace NetCoreGui.Themes
             return false;
         }
         
-        private void DrawGridCol(GridCol control)
-        {
-            var colProp = control.GetProperties(this);
-            GraphicsContext.DrawRect(control.Position.x, control.Position.y, colProp.Size.Width, colProp.Size.Height, colProp.BackColor);            
-        }
-
         private void DrawGridRow(GridRow control)
         {
             var rowProp = control.GetProperties(this);
@@ -237,6 +229,12 @@ namespace NetCoreGui.Themes
 
                 colX += col.Size.Width;
             }            
+        }
+
+        private void DrawGridCol(GridCol control)
+        {
+            var colProp = control.GetProperties(this);
+            GraphicsContext.DrawRect(control.Position.x, control.Position.y, colProp.Size.Width, colProp.Size.Height, colProp.BackColor);
         }
 
         #endregion

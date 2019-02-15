@@ -73,12 +73,12 @@ namespace NetCoreGui.Desktop
                 Chields = new List<Control>() {
                     new GridRow()
                     {
-                        BackColor = Colors.Amber.L400,
+                        //BackColor = Colors.Amber.L400,
                         Chields = new List<Control>()
                         {
                             new GridCol()
                             {
-                                BackColor = Colors.Brown.L300,
+                                //BackColor = Colors.Brown.L300,
                                 ColSize = GridColSize.ColEight,
                                 Chields = new List<Control>()
                                 {
@@ -89,7 +89,7 @@ namespace NetCoreGui.Desktop
                             },
                             new GridCol()
                             {
-                                BackColor = Colors.Brown.L300,
+                                //BackColor = Colors.Brown.L300,
                                 ColSize = GridColSize.ColFour,
                                 Chields = new List<Control>()
                                 {
@@ -102,12 +102,12 @@ namespace NetCoreGui.Desktop
                     },
                     new GridRow()
                     {
-                        BackColor = Colors.Amber.L300,
+                        //BackColor = Colors.Amber.L300,
                         Chields = new List<Control>()
                         {
                             new GridCol()
                             {
-                                BackColor = Colors.Brown.L200,
+                                //BackColor = Colors.Brown.L200,
                                 ColSize = GridColSize.ColSix,
                                 Chields = new List<Control>()
                                 {
@@ -117,7 +117,7 @@ namespace NetCoreGui.Desktop
                             },
                             new GridCol()
                             {
-                                BackColor = Colors.Brown.L200,
+                                //BackColor = Colors.Brown.L200,
                                 ColSize = GridColSize.ColSix,
                                 Chields = new List<Control>()
                                 {

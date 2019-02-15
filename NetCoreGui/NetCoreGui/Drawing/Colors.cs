@@ -6,8 +6,9 @@ using System.Text;
 
 namespace NetCoreGui.Drawing
 {
-    public class Colors
+    public static class Colors
     {
+        public static Color Default { get { return new Color(254,254,254,0); } }
         public class Red
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFEBEE");
