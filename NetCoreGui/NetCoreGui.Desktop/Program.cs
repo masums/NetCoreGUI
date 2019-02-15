@@ -35,7 +35,7 @@ namespace NetCoreGui.Desktop
                 Id = "columnLayoutTest",
                 Size = new Size(300,200),
                 Position = new Point(30,150),
-                BackColor = Colors.BLUE.L500,
+                BackColor = Colors.Blue.L500,
                 Chields = new List<Control>() {
                     new Button(){ Id="btn2", Text = "Button 2"},
                     new Button(){ Id="btn3", Text = "Button 3"},
@@ -52,7 +52,7 @@ namespace NetCoreGui.Desktop
                 Id = "rowLayoutTest",
                 Size = new Size(550, 100),
                 Position = new Point(30, 450),
-                BackColor = Colors.LIME.L500,
+                BackColor = Colors.Lime.L500,
                 Chields = new List<Control>() {
                     new Button(){ Id="btn2", Text = "Button 2"},
                     new Button(){ Id="btn3", Text = "Button 3"},
@@ -69,14 +69,16 @@ namespace NetCoreGui.Desktop
                 Id = "gridLayoutTest",
                 Size = new Size(450, 400),
                 Position = new Point(330, 30),
-                BackColor = Colors.GREEN.L400,
+                BackColor = Colors.Green.L500,
                 Chields = new List<Control>() {
                     new GridRow()
                     {
+                        BackColor = Colors.Amber.L400,
                         Chields = new List<Control>()
                         {
                             new GridCol()
                             {
+                                BackColor = Colors.Brown.L300,
                                 ColSize = GridColSize.ColEight,
                                 Chields = new List<Control>()
                                 {
@@ -87,6 +89,7 @@ namespace NetCoreGui.Desktop
                             },
                             new GridCol()
                             {
+                                BackColor = Colors.Brown.L300,
                                 ColSize = GridColSize.ColFour,
                                 Chields = new List<Control>()
                                 {
@@ -99,10 +102,12 @@ namespace NetCoreGui.Desktop
                     },
                     new GridRow()
                     {
+                        BackColor = Colors.Amber.L300,
                         Chields = new List<Control>()
                         {
                             new GridCol()
                             {
+                                BackColor = Colors.Brown.L200,
                                 ColSize = GridColSize.ColSix,
                                 Chields = new List<Control>()
                                 {
@@ -112,6 +117,7 @@ namespace NetCoreGui.Desktop
                             },
                             new GridCol()
                             {
+                                BackColor = Colors.Brown.L200,
                                 ColSize = GridColSize.ColSix,
                                 Chields = new List<Control>()
                                 {

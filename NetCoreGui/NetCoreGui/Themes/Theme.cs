@@ -184,48 +184,61 @@ namespace NetCoreGui.Themes
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
 
-            Dictionary<int, List<Control>> rows = new Dictionary<int, List<Control>>();
+            var controlX = control.Position.x + control.Padding.Left;
+            var controlY = control.Position.y + control.Padding.Top;
 
-            int totalWidth = 0;
-            int row = 1;
-
-            foreach (var item in control.Chields)
+            foreach (var row in control.Chields)
             {
-                totalWidth += item.Size.Width;
+                Dictionary<int, List<Control>> cols = new Dictionary<int, List<Control>>();
+                
+                row.Position.x = controlX;
+                row.Position.y = controlY;
 
-                if (totalWidth >= prop.Size.Width)
-                {
-                    totalWidth = item.Size.Width;
-                    row++;
-                }
+                var rowMaxHeight = row.Size.Height;
+                var max1 = row.Chields.Max(x=>x.Size.Height);
+                var max2 = row.Chields.SelectMany(x => x.Chields).Max(x => x.Size.Height);
 
-                if (rows.Keys.Contains(row) == false)
-                {
-                    rows.Add(row, new List<Control>());
-                }
-                rows[row].Add(item);
+                rowMaxHeight = Math.Max(rowMaxHeight, max1);
+                rowMaxHeight = Math.Max(rowMaxHeight, max2);
+
+                row.Size.Height = rowMaxHeight;
+                row.Size.Width = prop.Size.Width;
+                controlY += row.Size.Height;
             }
 
-            var colY = prop.Padding.Left;
-
-            foreach (var item in rows)
-            {
-                var colControls = item.Value;
-                var lastX = control.Padding.Left;
-
-                foreach (var cc in colControls)
-                {
-                    cc.Position.x = lastX;
-                    cc.Position.y = colY;
-                    lastX += cc.Size.Width;
-                }
-
-                colY += colControls.Max(x => x.Size.Height);
-            }
-
-            RenderControls(control.Chields);
-            return true;
+            return false;
         }
+        
+        private void DrawGridCol(GridCol control)
+        {
+            var colProp = control.GetProperties(this);
+            GraphicsContext.DrawRect(control.Position.x, control.Position.y, colProp.Size.Width, colProp.Size.Height, colProp.BackColor);            
+        }
+
+        private void DrawGridRow(GridRow control)
+        {
+            var rowProp = control.GetProperties(this);
+            var rowWidth = rowProp.Size.Width;
+
+            GraphicsContext.DrawRect(control.Position.x, control.Position.y, rowProp.Size.Width, rowProp.Size.Height, rowProp.BackColor);
+
+            var colX = control.Position.x;
+            var colY = control.Position.y;
+            
+            foreach (var col in control.Chields)
+            {
+                var gCol = (GridCol)col;
+
+                col.Size.Width = (rowWidth / 12) * (int)gCol.ColSize;
+                col.Size.Height = col.Chields.Max(x => x.Size.Height);
+
+                col.Position.y = colY;
+                col.Position.x = colX;
+
+                colX += col.Size.Width;
+            }            
+        }
+
         #endregion
 
         public virtual void RenderControls(List<Control> chields)
@@ -260,8 +273,14 @@ namespace NetCoreGui.Themes
                     case RowLayout control:
                         isChieldsRendered = DrawRowLayout(control);                        
                         break;
+                    case GridRow control:
+                        DrawGridRow(control);
+                        break;
+                    case GridCol control:
+                        DrawGridCol(control);
+                        break;
                     case GridLayout control:
-                        isChieldsRendered = DrawGridLayout(control);
+                        DrawGridLayout(control);
                         break;
                     default:
                         DrawControl(item);
@@ -273,6 +292,7 @@ namespace NetCoreGui.Themes
                     RenderControls(item.Chields);
                 }
             }
-        } 
+        }
+
     }
 }

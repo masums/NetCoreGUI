@@ -8,7 +8,7 @@ namespace NetCoreGui.Drawing
 {
     public class Colors
     {
-        public class RED
+        public class Red
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFEBEE");
             public static Color L100 = ColorUtil.GetSfmlColor("#FFCDD2");
@@ -22,7 +22,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#B71C1C");
         }
 
-        public class PINK
+        public class Pink
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FCE4EC");
             public static Color L100 = ColorUtil.GetSfmlColor("#F8BBD0");
@@ -36,7 +36,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#880E4F");
         }
 
-        public class PURPLE
+        public class Purple
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#F3E5F5");
             public static Color L100 = ColorUtil.GetSfmlColor("#E1BEE7");
@@ -50,7 +50,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#4A148C");
         }
 
-        public class DEEP_PURPLE
+        public class DeepPurple
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#EDE7F6");
             public static Color L100 = ColorUtil.GetSfmlColor("#D1C4E9");
@@ -64,7 +64,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#311B92");
         }
 
-        public class INDIGO
+        public class Indigo
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E8EAF6");
             public static Color L100 = ColorUtil.GetSfmlColor("#C5CAE9");
@@ -78,7 +78,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#1A237E");
         }
         
-        public class BLUE
+        public class Blue
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E3F2FD");
             public static Color L100 = ColorUtil.GetSfmlColor("#BBDEFB");
@@ -92,7 +92,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#0D47A1");
         }
 
-        public class LIGHT_BLUE
+        public class LightBlue
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E1F5FE");
             public static Color L100 = ColorUtil.GetSfmlColor("#B3E5FC");
@@ -106,7 +106,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#01579B");
         }
 
-        public class CYAN
+        public class Cyan
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E0F7FA");
             public static Color L100 = ColorUtil.GetSfmlColor("#B2EBF2");
@@ -120,7 +120,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#006064");
         }
 
-        public class TEAL
+        public class Teal
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E0F2F1");
             public static Color L100 = ColorUtil.GetSfmlColor("#B2DFDB");
@@ -134,7 +134,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#004D40");
         }
 
-        public class GREEN
+        public class Green
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#E8F5E9");
             public static Color L100 = ColorUtil.GetSfmlColor("#C8E6C9");
@@ -148,7 +148,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#1B5E20");
         }
 
-        public class LIGHT_GREEN
+        public class LightGreen
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#F1F8E9");
             public static Color L100 = ColorUtil.GetSfmlColor("#DCEDC8");
@@ -161,7 +161,7 @@ namespace NetCoreGui.Drawing
             public static Color L800 = ColorUtil.GetSfmlColor("#558B2F");
             public static Color L900 = ColorUtil.GetSfmlColor("#33691E");
         }
-        public class LIME
+        public class Lime
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#F9FBE7");
             public static Color L100 = ColorUtil.GetSfmlColor("#F0F4C3");
@@ -175,7 +175,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#827717");
         }
 
-        public class YELLOW
+        public class Yellow
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFFDE7");
             public static Color L100 = ColorUtil.GetSfmlColor("#FFF9C4");
@@ -189,7 +189,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#F57F17");
         }
 
-        public class AMBER
+        public class Amber
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFF8E1");
             public static Color L100 = ColorUtil.GetSfmlColor("#FFECB3");
@@ -203,7 +203,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#FF6F00");
         }
 
-        public class ORANGE
+        public class Orange
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFF3E0");
             public static Color L100 = ColorUtil.GetSfmlColor("#FFE0B2");
@@ -217,7 +217,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#E65100");
         }
 
-        public class DEEP_ORANGE
+        public class DeepOrange
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FBE9E7");
             public static Color L100 = ColorUtil.GetSfmlColor("#FFCCBC");
@@ -231,7 +231,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#BF360C");
         }
 
-        public class BROWN
+        public class Brown
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#EFEBE9");
             public static Color L100 = ColorUtil.GetSfmlColor("#D7CCC8");
@@ -245,7 +245,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#3E2723");
         }
 
-        public class GREY
+        public class Grey
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FAFAFA");
             public static Color L100 = ColorUtil.GetSfmlColor("#F5F5F5");
@@ -259,7 +259,7 @@ namespace NetCoreGui.Drawing
             public static Color L900 = ColorUtil.GetSfmlColor("#212121");
         }
 
-        public class BLUE_GREY
+        public class BlueGrey
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#ECEFF1");
             public static Color L100 = ColorUtil.GetSfmlColor("#CFD8DC");
@@ -275,7 +275,7 @@ namespace NetCoreGui.Drawing
 
         public class Palette
         {
-            public class Armor_Falls
+            public class ArmorFalls
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#bfd6f6");
                 public static Color _2 = ColorUtil.GetSfmlColor("#8dbdff");
@@ -284,7 +284,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#3b7dd8");
             }
 
-            public class Space_Gray
+            public class SpaceGray
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#343d46");
                 public static Color _2 = ColorUtil.GetSfmlColor("#4f5b66");
@@ -293,7 +293,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#c0c5ce");
             }
 
-            public class Skin_Tones
+            public class SkinTones
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#8d5524");
                 public static Color _2 = ColorUtil.GetSfmlColor("#c68642");
@@ -302,7 +302,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#ffdbac");
             }
 
-            public class Purple_Skyline
+            public class PurpleSkyline
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#2e003e");
                 public static Color _2 = ColorUtil.GetSfmlColor("#3d2352");
@@ -311,7 +311,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#e4dcf1");
             }
 
-            public class Office_Room
+            public class OfficeRoom
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#84c1ff");
                 public static Color _2 = ColorUtil.GetSfmlColor("#add6ff");
@@ -320,7 +320,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#f8fbff");
             }
 
-            public class Program_Catalog
+            public class ProgramCatalog
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#edc951");
                 public static Color _2 = ColorUtil.GetSfmlColor("#eb6841");
@@ -329,7 +329,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#00a0b0");
             }
 
-            public class Never_Doubt
+            public class NeverDoubt
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#eeeeee");
                 public static Color _2 = ColorUtil.GetSfmlColor("#dddddd");
@@ -347,7 +347,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#8c9da9");
             }
 
-            public class Metro_UI
+            public class MetroUi
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#d11141");
                 public static Color _2 = ColorUtil.GetSfmlColor("#00b159");
@@ -356,7 +356,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#ffc425");
             }
 
-            public class Pastel_Rainbow
+            public class PastelRainbow
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#a8e6cf");
                 public static Color _2 = ColorUtil.GetSfmlColor("#dcedc1");
@@ -365,7 +365,7 @@ namespace NetCoreGui.Drawing
                 public static Color _5 = ColorUtil.GetSfmlColor("#ff8b94");
             }
 
-            public class Rainbow_Dash
+            public class RainbowDash
             {
                 public static Color _1 = ColorUtil.GetSfmlColor("#ee4035");
                 public static Color _2 = ColorUtil.GetSfmlColor("#f37736");

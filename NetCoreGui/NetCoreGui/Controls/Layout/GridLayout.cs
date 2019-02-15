@@ -21,9 +21,9 @@ namespace NetCoreGui.Controls.Layout
         public GridColSize ColSize { get; set; }
     }
 
-    public enum GridColSize
+    public enum GridColSize : int
     {
-        ColOne,
+        ColOne = 1,
         ColTwo,
         ColThree,
         ColFour,
