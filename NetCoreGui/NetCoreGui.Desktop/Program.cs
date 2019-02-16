@@ -126,6 +126,35 @@ namespace NetCoreGui.Desktop
                                 }
                             },
                         }
+                    },
+                    new GridRow()
+                    {
+                        //BackColor = Colors.Amber.L200,
+                        Chields = new List<Control>()
+                        {
+                            new GridCol()
+                            {
+                                //BackColor = Colors.Red.L200,
+                                ColSize = GridColSize.ColTwelve,
+                                Chields = new List<Control>()
+                                {
+                                    new RowLayout()
+                                    {
+                                        Padding = new Rect(0,0,0,0),
+                                        Margin = new Rect(0,0,0,0),
+                                        Size = new Size(450,50),
+                                        BackColor = Colors.Transparent,
+                                        Chields = new List<Control>()
+                                        {
+                                            new Button() { Id = "btn5", Text = "Button 5"},
+                                            new Button() { Id = "btn6", Text = "Button 6"},
+                                            new Button() { Id = "btn7", Text = "Button 7"},
+                                            new Button() { Id = "btn8", Text = "Button 8"},
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             });

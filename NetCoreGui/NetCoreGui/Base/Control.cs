@@ -154,11 +154,12 @@ namespace NetCoreGui.Base
         {
             if (Parent == null || Positioning == Positioning.Absolute)
             {
-                return new Point(Position.x - Margin.Left, Position.y - Margin.Top);
+                return new Point(Position.x + Margin.Left, Position.y + Margin.Top);
             }
             else
             {
-                return new Point(Parent.Position.x + Position.x - Margin.Left, Parent.Position.y + Position.y - Margin.Top);
+                var parentPos = Parent.GetCalclutedPosition();
+                return new Point(parentPos.x + Position.x + Margin.Left, parentPos.y + Position.y + Margin.Top);
             }
         }
 

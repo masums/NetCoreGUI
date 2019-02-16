@@ -9,7 +9,10 @@ namespace NetCoreGui.Controls.Layout
 {
     public class GridLayout : Control
     {
-        
+        public GridLayout()
+        {
+            Padding = new Rect(0, 0, 0, 0);
+        }
     }
 
     public class GridRow : Control
@@ -27,6 +30,8 @@ namespace NetCoreGui.Controls.Layout
         public GridColSize ColSize { get; set; }
         public GridCol()
         {
+            //Padding = new Rect(0, 0, 0, 0);
+            //Margin = new Rect(0, 0, 0, 0);
             BackColor = Color.Transparent;
         }
     }

@@ -9,6 +9,7 @@ namespace NetCoreGui.Drawing
     public static class Colors
     {
         public static Color Default { get { return new Color(254,254,254,0); } }
+        public static Color Transparent { get { return Color.Transparent; } }
         public class Red
         {
             public static Color L50 = ColorUtil.GetSfmlColor("#FFEBEE");
