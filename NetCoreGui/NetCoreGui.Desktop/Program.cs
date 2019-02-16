@@ -83,7 +83,7 @@ namespace NetCoreGui.Desktop
                                 Chields = new List<Control>()
                                 {
                                     new Button(){ Id="btn2", Text = "Button 2"},
-                                    new Button(){ Id="btn3", Text = "Button 3", Position = new Point(105,0)},
+                                    new Button(){ Id="btn3", Text = "Button 3", Position = new Point(100,0)},
                                 }
                             },
                             new GridCol()
@@ -109,7 +109,7 @@ namespace NetCoreGui.Desktop
                                 Chields = new List<Control>()
                                 {
                                     new Button() { Id = "btn5", Text = "Button 5"},
-                                    new Button() { Id = "btn6", Text = "Button 6", Position = new Point(105,0)},
+                                    new Button() { Id = "btn6", Text = "Button 6", Position = new Point(100,0)},
                                 }
                             },
                             new GridCol()
@@ -119,7 +119,7 @@ namespace NetCoreGui.Desktop
                                 Chields = new List<Control>()
                                 {
                                     new Button() { Id = "btn7", Text = "Button 7"},
-                                    new Button() { Id = "btn8", Text = "Button 8", Position = new Point(105,0)},
+                                    new Button() { Id = "btn8", Text = "Button 8", Position = new Point(100,0)},
                                 }
                             },
                         }
