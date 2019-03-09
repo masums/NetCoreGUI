@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NetCoreGui.Base;
 using NetCoreGui.Controls;
+using NetCoreGui.Controls.Container;
 using NetCoreGui.Controls.Layout;
 using NetCoreGui.Drawing;
 using NetCoreGui.Drivers;
@@ -129,7 +130,6 @@ namespace NetCoreGui.Themes
                 colX += colControls.Max(x => x.Size.Width);
             }
 
-            //RenderControls(control.Chields);
             return true;
         }
 
@@ -177,7 +177,6 @@ namespace NetCoreGui.Themes
                 colY += colControls.Max(x => x.Size.Height);
             }
 
-            //RenderControls(control.Chields);
             return true;
         }
 
@@ -185,9 +184,6 @@ namespace NetCoreGui.Themes
         {
             Properties prop = control.GetProperties(this);
             GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, prop.BackColor);
-
-            //var controlX = control.Position.x + control.Padding.Left;
-            //var controlY = control.Position.y + control.Padding.Top;
 
             var controlX = 0 + control.Padding.Left;
             var controlY = 0 + control.Padding.Top;
@@ -242,6 +238,80 @@ namespace NetCoreGui.Themes
             GraphicsContext.DrawRect(colProp.Position.x, colProp.Position.y, colProp.Size.Width, colProp.Size.Height, colProp.BackColor);
         }
 
+        public virtual void DrawPanel(Control control)
+        {
+            Dictionary<Alignment, List<Control>> alignedControls = new Dictionary<Alignment, List<Control>>();
+            alignedControls[Alignment.BottomCenter] = new List<Control>();
+            alignedControls[Alignment.BottomLeft] = new List<Control>();
+            alignedControls[Alignment.BottomRight] = new List<Control>();
+            alignedControls[Alignment.Center] = new List<Control>();
+            alignedControls[Alignment.CenterLeft] = new List<Control>();
+            alignedControls[Alignment.CenterRight] = new List<Control>();
+            alignedControls[Alignment.TopCenter] = new List<Control>();
+            alignedControls[Alignment.TopLeft] = new List<Control>();
+            alignedControls[Alignment.TopRight] = new List<Control>();
+            
+            Properties prop = control.GetProperties(this);
+            Color backColor = prop.ControlColor;
+
+            if(prop.BackColor != Colors.Default)
+            {
+                backColor = prop.BackColor;
+            }
+
+            foreach (var item in control.Chields)
+            {
+                if(item.Position.x == 0 && item.Position.y == 0)
+                {
+                    alignedControls[item.Alignment].Add(item);
+                }
+            }
+
+            var startX = 0;
+            var startY = 0;
+
+            foreach (var item in alignedControls[Alignment.TopLeft])
+            {
+                item.Position.x = startX;
+                item.Position.y = startY;
+                startX += item.Size.Width + item.Margin.Right;
+
+            }
+
+            startX = 0;
+            startY = control.Size.Height - control.Padding.Bottom;
+
+            foreach (var item in alignedControls[Alignment.BottomLeft])
+            {
+                item.Position.x = startX;
+                item.Position.y = startY - item.Size.Height;
+                startX += item.Size.Width + item.Margin.Right;
+            }
+
+            startX = control.Size.Width - control.Padding.Right;
+            startY = 0;
+
+            foreach (var item in alignedControls[Alignment.TopRight])
+            {
+                item.Position.x = startX - item.Size.Width;
+                item.Position.y = startY ;
+                startX -= item.Size.Width;
+            }
+
+            startX = control.Size.Width - control.Padding.Right;
+            startY = control.Size.Height - control.Padding.Bottom;
+
+            foreach (var item in alignedControls[Alignment.BottomRight])
+            {
+                item.Position.x = startX - item.Size.Width;
+                item.Position.y = startY-item.Size.Height;
+                startX -= item.Size.Width;
+            }
+
+
+            GraphicsContext.DrawRect(prop.Position.x, prop.Position.y, prop.Size.Width, prop.Size.Height, backColor, prop.BorderColor, ControlBorderWidth);            
+        }
+
         #endregion
 
         public virtual void RenderControls(List<Control> chields)
@@ -288,7 +358,9 @@ namespace NetCoreGui.Themes
                     case GridLayout control:
                         DrawGridLayout(control);
                         break;
-
+                    case Panel control:
+                        DrawPanel(control);
+                        break;
                     default:
                         DrawControl(item);
                         break;

@@ -36,12 +36,15 @@ namespace NetCoreGui.Drawing
 
     public enum Alignment
     {
-        Top ,
-        Left, 
-        Right ,
-        Bottom,
-        CenterVertical,
-        CenterHorizontal,       
+        TopLeft ,
+        TopCenter,
+        TopRight,
+        CenterLeft,
+        Center,
+        CenterRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight       
     }
 
     public enum Positioning

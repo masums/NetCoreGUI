@@ -72,7 +72,6 @@ namespace NetCoreGui.Base
         }
 
         public Point Position { get => _position; set => _position = value; }
-
         public List<Anchor> Anchors { get; set; }
         public Rect Padding { get; set; }
         public Rect Margin { get; set; }
@@ -115,7 +114,7 @@ namespace NetCoreGui.Base
             Padding = new Rect(DefaultPadding.Top, DefaultPadding.Left, DefaultPadding.Right, DefaultPadding.Bottom);
             Margin = new Rect(DefaultMargin.Top, DefaultMargin.Left, DefaultMargin.Right, DefaultMargin.Bottom);
 
-            Alignment = Alignment.Left;
+            Alignment = Alignment.Center;
             Visibility = ControlVisibility.Visible;
             Positioning = Positioning.Relative;
 

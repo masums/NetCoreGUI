@@ -23,7 +23,7 @@ namespace NetCoreGui.Utility
 
         public List<IWindow> Windows { get; set; }
         
-        public static Application Create()
+        public static Application ProstutHou()
         {
             var app = new Application();
             app.consoleHandle = Process.GetCurrentProcess().Handle;
@@ -33,7 +33,11 @@ namespace NetCoreGui.Utility
             return app;
         }
 
-        public void Run(IWindow window){
+        /// <summary>
+        /// Begin the application from here
+        /// </summary>
+        /// <param name="window">The window which will show</param>
+        public void Bismillah(IWindow window){
 
             _lastZedIndex  = _lastZedIndex + 10000;
             window.Create(_lastZedIndex);
@@ -55,7 +59,7 @@ namespace NetCoreGui.Utility
             }
         }
 
-        public Application UseTheme(Type themeType)
+        public Application Sejeguje(Type themeType)
         {
             ThemeType = themeType;
             return this;
