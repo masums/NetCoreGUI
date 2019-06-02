@@ -45,16 +45,16 @@ namespace NetCoreGui.Utility
 
             while (nativeWindow.IsOpen)
             {
-                nativeWindow.Clear(window.Theme.BackColor);
-                nativeWindow.DispatchEvents();
-
                 var windows = WindowManager.GetWindows().Where(x => x.State != WindowState.Minimized).ToList();
                 foreach (var item in windows)
                 {
+                    var nWin = item.Theme.GraphicsContext.Window;
+                    nWin.Clear(window.Theme.BackColor);
+                    nWin.DispatchEvents();
                     item.DrawControls();
+                    nWin.Display();
                 }
 
-                nativeWindow.Display();
                 Thread.Sleep(3);
             }
         }

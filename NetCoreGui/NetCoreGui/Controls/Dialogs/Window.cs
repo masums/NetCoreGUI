@@ -62,7 +62,7 @@ namespace NetCoreGui.Controls.Dialogs
 
         public void Show()
         {
-            Create(100);
+            Create(100); 
         }
 
         public void Create(int lastZedIndex)
