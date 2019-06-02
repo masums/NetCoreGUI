@@ -24,9 +24,9 @@ namespace NetCoreGui.Desktop.Views
                     Position = new Point(0, 0),
                     Chields = new List<Control>()
                     {
-                        new Button() { Id = "clickMeBtn", Text = "Click Me", Size = new Size(100, 30), Position = new Point(30, 30) },
-                        new Label() { Id = "nameLbl", Text = "Enter your name", Size = new Size(100, 20), Position = new Point(30, 70) },
-                        new TextBox() { Id = "inputTxt", Text = "Edit Text", Size = new Size(200, 30), Position = new Point(30, 100) },
+                        new Button() { Id = "ClickMeBtn", Text = "Click Me", Size = new Size(100, 30), Position = new Point(30, 30) },
+                        new Label() { Id = "NameLbl", Text = "Enter your name", Size = new Size(100, 20), Position = new Point(30, 70) },
+                        new TextBox() { Id = "InputTxt", Text = "Edit Text", Size = new Size(200, 30), Position = new Point(30, 100) },
                         new ColumnLayout()
                         {
                             Id = "columnLayoutTest",

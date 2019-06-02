@@ -21,7 +21,7 @@ namespace NetCoreGui.Desktop
             Console.WriteLine("Hello GUI World!, Let's core, let's cross");
            
             var window = new MainWindow( Info.LibraryName + " v" + Info.Version );           
-            Application.ProstutHou().Bismillah(window);
+            Application.Create().Bismillah(window);
         }           
     }
 }

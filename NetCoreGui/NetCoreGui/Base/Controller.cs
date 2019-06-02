@@ -7,5 +7,6 @@ namespace NetCoreGui.Base
     public class Controller
     {
         public string Name { get; set; }
+
     }
 }

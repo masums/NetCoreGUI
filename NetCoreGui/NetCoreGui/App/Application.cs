@@ -23,7 +23,7 @@ namespace NetCoreGui.Utility
 
         public List<IWindow> Windows { get; set; }
         
-        public static Application ProstutHou()
+        public static Application Create()
         {
             var app = new Application();
             app.consoleHandle = Process.GetCurrentProcess().Handle;
@@ -55,11 +55,11 @@ namespace NetCoreGui.Utility
                 }
 
                 nativeWindow.Display();
-                Thread.Sleep(1);
+                Thread.Sleep(3);
             }
         }
 
-        public Application Sejeguje(Type themeType)
+        public Application UseTheme(Type themeType)
         {
             ThemeType = themeType;
             return this;

@@ -13,8 +13,9 @@ namespace NetCoreGui.Events
             window.Closed += Window_Closed;
             window.KeyPressed += Window_KeyPressed;
             window.MouseMoved += Window_MouseMoved;
-            window.MouseButtonReleased += Window_MouseButtonReleased;
             window.Resized += Window_Resized;
+            window.MouseButtonPressed += Window_MouseButtonPressed;
+            window.MouseButtonReleased += Window_MouseButtonReleased;
         }
 
         private static void Window_Resized(object sender, SizeEventArgs e)
@@ -25,14 +26,19 @@ namespace NetCoreGui.Events
 
         }
 
-        private static void Window_MouseButtonReleased(object sender, MouseButtonEventArgs e)
+        private static void Window_MouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
             WindowManager.FireMouseClick((Window)sender, e);
         }
 
+        private static void Window_MouseButtonReleased(object sender, MouseButtonEventArgs e)
+        {
+            WindowManager.FireMouseReleased((Window)sender, e);
+        }
+
         private static void Window_MouseMoved(object sender, MouseMoveEventArgs e)
         {
-            WindowManager.FireMouseMove((Window)sender, e.X, e.Y);
+            WindowManager.FireMouseMoved((Window)sender, e.X, e.Y);
         }
 
         private static void Window_KeyPressed(object sender, KeyEventArgs e)

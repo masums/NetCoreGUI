@@ -19,4 +19,10 @@ namespace NetCoreGui.Events
         public IWindow Window { get; set; }
         public Size NewSize { get; set; }
     }
+
+    public class MouseEventArg : EventArg
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
 }

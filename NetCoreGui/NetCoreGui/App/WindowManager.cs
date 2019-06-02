@@ -1,4 +1,5 @@
 ﻿using NetCoreGui.Base;
+using NetCoreGui.Events;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,40 @@ namespace NetCoreGui.Utility
 
         internal static void FireMouseClick(Window window, MouseButtonEventArgs e)
         {
-            _activeControl.FireMouseClick(window, e);
+            var ctl = FindWindowControl(window, e.X, e.Y);
+            if (ctl != null)
+            {
+                _activeControl = ctl;
+                _activeControl.FireMouseClick(window, e);
+
+                var appWindw = _appWindows[window.SystemHandle];
+
+                var ctrlId = ctl.Id;
+                var windowType = appWindw.Window.GetType();
+                var controllerName = windowType.Name + "Controller";
+                var ctlController = windowType.Assembly.ExportedTypes.Where( x=>x.Name.Equals(controllerName)).FirstOrDefault();
+
+                if (ctlController != null)
+                {
+                    var obj = Activator.CreateInstance(ctlController);
+                    if(obj != null)
+                    {
+                        var method = ctlController.GetMethod(ctrlId + "_Clicked");
+                        if (method != null)
+                        {
+                            method.Invoke(obj, new object[] { appWindw.Window, new MouseEventArg() { X = e.X, Y = e.Y } });
+                        }
+                    }
+                }
+            }
         }
 
-        internal static void FireMouseMove(Window window, double xpos, double ypos)
+        internal static void FireMouseReleased(Window sender, MouseButtonEventArgs e)
+        {
+             
+        }
+
+        internal static void FireMouseMoved(Window window, double xpos, double ypos)
         {
             var ctl = FindWindowControl(window, xpos, ypos);
             if(ctl != null)

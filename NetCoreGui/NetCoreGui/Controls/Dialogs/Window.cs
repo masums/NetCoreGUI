@@ -27,6 +27,7 @@ namespace NetCoreGui.Controls.Dialogs
         //public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
         public Theme Theme { get; set; }
+        public dynamic Model { get; set; }
 
         public Window(string title, Window parent = null, Size size = null, Point position = null)
         {
@@ -59,9 +60,9 @@ namespace NetCoreGui.Controls.Dialogs
         //    Size = new Size(x + 400, y + 400);
         //}
 
-        internal void Show()
+        public void Show()
         {
-            
+            Create(100);
         }
 
         public void Create(int lastZedIndex)

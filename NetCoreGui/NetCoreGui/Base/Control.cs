@@ -251,6 +251,12 @@ namespace NetCoreGui.Base
         {
             OnKeyRelease(this, new EventArg() { Data = new { Code = e.Code, Ctrl = e.Control, Alt = e.Alt, Shift = e.Shift, System = e.System } });
         }
+        
+        public Control AttachEvent(Events events, AppEventHandler handler)
+        {
+
+            return this;
+        }
 
         #endregion
     }
@@ -280,5 +286,16 @@ namespace NetCoreGui.Base
         {
             Visibility = ControlVisibility.Hidden;
         }
+    }
+    
+    public enum Events
+    {
+        OnMouseMove,
+        OnMouseClick,
+        OnMouseDoubleClick,
+        OnKeyPresse,
+        OnKeyRelease,
+        OnResize,
+        OnRefresh
     }
 }
