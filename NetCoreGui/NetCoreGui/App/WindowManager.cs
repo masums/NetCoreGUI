@@ -37,9 +37,13 @@ namespace NetCoreGui.Utility
             var ctl = FindWindowControl(window, e.X, e.Y);
             if (ctl != null)
             {
-                _activeControl = ctl;
-                _activeControl.FireMouseClick(window, e);
+                if (_appWindows.ContainsKey(window.SystemHandle) == false)
+                {
+                    return;
+                }
 
+                _activeControl = ctl;
+                
                 var appWindw = _appWindows[window.SystemHandle];
 
                 var ctrlId = ctl.Id;
@@ -59,6 +63,9 @@ namespace NetCoreGui.Utility
                         }
                     }
                 }
+
+                _activeControl.FireMouseClick(window, e);
+
             }
         }
 

@@ -12,6 +12,7 @@ namespace NetCoreGui.Controls.Dialogs
     {
         public MessageBox(string title, string text, Window parent = null, Size size = null, Point position = null) : base(title, parent, size, position)
         {
+            var me = this;
             Text = title;
 
             Chields = new List<Control>()
@@ -20,7 +21,17 @@ namespace NetCoreGui.Controls.Dialogs
                 {
                     Chields = new List<Control>
                     {
-                        new Label(){ Id="MessageLabel", Text = text, Size = new Size(100, 20), Position = new Point(50, 50) }
+                        new Label(){ Id="MessageLabel", Text = text, Size = new Size(100, 20), Position = new Point(50, 50) },
+                        new RowLayout()
+                        {
+                            Chields = new List<Control>(){
+                                new Button(){ Id="OkButton", Text = "OK", Size = new Size(100, 30), Position = new Point(50, 70) }
+                                .AttachEvent(Base.Events.OnMouseClick, (s, e) => {
+                                    me.Close();
+                                }),
+                                new Button(){ Id="CancelButton", Text = "Cancel", Size = new Size(100, 30), Position = new Point(150, 70) },
+                            }
+                        }
                     }
                 }
             };

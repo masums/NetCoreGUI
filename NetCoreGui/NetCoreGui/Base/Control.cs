@@ -254,7 +254,10 @@ namespace NetCoreGui.Base
         
         public Control AttachEvent(Events events, AppEventHandler handler)
         {
-
+            if(events == Events.OnMouseClick)
+            {
+                OnMouseClick += handler;
+            }
             return this;
         }
 

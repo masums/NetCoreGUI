@@ -39,5 +39,6 @@ namespace NetCoreGui.Base
 
         void Create(int lastZedIndex);
         void DrawControls();
+        void Close();
     }
 }

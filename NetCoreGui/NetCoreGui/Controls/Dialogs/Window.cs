@@ -70,6 +70,7 @@ namespace NetCoreGui.Controls.Dialogs
             ZedIndex = _currentZedIndex = lastZedIndex;
             Theme = (Theme)Activator.CreateInstance(Application.ThemeType);
             _graphicsContext = _graphicsDriver.CreateWindow(Title, Size);
+            _nativeWindow = _graphicsContext.Window;
 
             NativeHandle = _graphicsContext.NativeWindowHandle; 
             Theme.GraphicsContext = _graphicsContext;
@@ -81,6 +82,11 @@ namespace NetCoreGui.Controls.Dialogs
         public void DrawControls()
         {
             Theme.RenderControls(Chields);
+        }
+
+        public void Close()
+        {
+            _nativeWindow.Close();
         }
     }
 }
