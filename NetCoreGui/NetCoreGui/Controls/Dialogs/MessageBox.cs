@@ -21,15 +21,20 @@ namespace NetCoreGui.Controls.Dialogs
                 {
                     Chields = new List<Control>
                     {
-                        new Label(){ Id="MessageLabel", Text = text, Size = new Size(100, 20), Position = new Point(50, 50) },
+                        new Label(){ Id="MessageLabel", Text = text, Size = new Size(100, 20), Alignment= Alignment.Center },
                         new RowLayout()
                         {
                             Chields = new List<Control>(){
-                                new Button(){ Id="OkButton", Text = "OK", Size = new Size(100, 30), Position = new Point(50, 70) }
+                                new Button(){ Id="OkButton", Text = "OK", Size = new Size(100, 30), Alignment = Alignment.Center }
                                 .AttachEvent(Base.Events.OnMouseClick, (s, e) => {
+                                    me.Result = DialogueResult.Ok;
                                     me.Close();
                                 }),
-                                new Button(){ Id="CancelButton", Text = "Cancel", Size = new Size(100, 30), Position = new Point(150, 70) },
+                                new Button(){ Id="CancelButton", Text = "Cancel", Size = new Size(100, 30), Alignment = Alignment.Center }
+                                .AttachEvent(Base.Events.OnMouseClick, (s,e)=>{
+                                    me.Result = DialogueResult.Cancel;
+                                    me.Close();
+                                })
                             }
                         }
                     }

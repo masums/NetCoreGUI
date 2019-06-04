@@ -1,4 +1,5 @@
-﻿using NetCoreGui.Drivers;
+﻿using NetCoreGui.Controls.Dialogs;
+using NetCoreGui.Drivers;
 using NetCoreGui.Themes;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace NetCoreGui.Base
         bool IsModal { get; set; }
         
         WindowState State { get; set; }
-             
+        DialogueResult Result { get; set; }     
         //IGraphicsContext GraphicsContext { get; set; }
 
         List<Control> Chields { get; set; }

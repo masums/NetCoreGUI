@@ -26,6 +26,8 @@ namespace NetCoreGui.Controls.Dialogs
         
         //public IGraphicsContext GraphicsContext { get; set; }
         public WindowState State { get; set; }
+        public DialogueResult Result { get; set; }
+
         public Theme Theme { get; set; }
         public dynamic Model { get; set; }
 
@@ -88,5 +90,16 @@ namespace NetCoreGui.Controls.Dialogs
         {
             _nativeWindow.Close();
         }
+    }
+
+    public enum DialogueResult
+    {
+        Ok,
+        Yes,
+        No,
+        Cancel,
+        Retry,
+        Confirm,
+        Ignore
     }
 }
