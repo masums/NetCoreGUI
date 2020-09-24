@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Copyright />
     <Authors>Md. Rashidul Hasan Masum</Authors>
     <Company>http://masums.com</Company>
